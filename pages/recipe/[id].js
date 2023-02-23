@@ -41,7 +41,7 @@ export default function Recipe({ recipe, recipeParent }) {
                         </div>
 
 
-                        <div className='row-span-3 md:mask-alpha md:scrollbar-custom flex flex-col gap-12 md:overflow-y-auto mb-10 2xl:mr-12'>
+                        <div className='row-span-3 mask-alpha md:scrollbar-custom flex flex-col gap-12 md:overflow-y-auto mb-10 2xl:mr-12'>
                             <ol className='text-left pb-52 md:w-4/5 list-decimal list-inside text-white/70 font-body gap-4 2xl:gap-8 flex flex-col font-light 2xl:text-xl'>
                                 {recipe.map(item => {
                                     return item.numbered_list_item &&
