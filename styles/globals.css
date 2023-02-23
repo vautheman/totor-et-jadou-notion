@@ -196,11 +196,11 @@ a.active * {
     transform: rotate(-45deg);
 }
 
-.tasks-list-cb:checked~.tasks-list-mark {
+.tasks-list-cb:checked ~ .tasks-list-mark {
     border-color: #FDBD84;
 }
 
-.tasks-list-cb:checked~.tasks-list-mark:before {
+.tasks-list-cb:checked ~ .tasks-list-mark:before {
     display: block;
 }
 
@@ -209,7 +209,7 @@ a.active * {
     color: #8a9a9b;
 }
 
-.tasks-list-cb:checked~.tasks-list-desc {
+.tasks-list-cb:checked ~ .tasks-list-desc {
     color: #FDBD84;
     text-decoration: line-through;
 }

@@ -52,7 +52,7 @@ export default function Recipe({ recipe, recipeParent }) {
                                     <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-black/50"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
                                 </div>
                                 <h3 className='font-title text-2xl 2xl:text-3xl'>Ingrédients</h3>
-                                <fieldset class="tasks-list">
+                                <fieldset className="tasks-list">
                                     {recipe.map((item, index) => {
                                         return item.to_do && (
                                             <label key={item.id} className="tasks-list-item py-2">
