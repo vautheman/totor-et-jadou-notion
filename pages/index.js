@@ -2,11 +2,11 @@ import Head from 'next/head'
 import { Client } from '@notionhq/client'
 import Link from 'next/link'
 import Nav from '@/components/Nav'
-import Main from '@/components/Main'
 import Tilt from 'react-vanilla-tilt'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
 import Layout from '@/components/Layout'
+import Image from "next/image";
 
 export default function Home({ recipes }) {
 
@@ -24,11 +24,17 @@ export default function Home({ recipes }) {
 
         <Nav recipe={recipes} />
 
-        <Main />
+        <main className="px-4 md:px-0 container mx-auto mb-10 2xl:mb-14">
+          <Image src={"/img/bg-cacao.png"} layout="fill" objectFit="contain" objectPosition="right" className="-z-10 pointer-events-none hidden lg:block" />
+          <div className="lg:w-2/3 flex flex-col gap-1">
+            <span className="font-body font-medium text-[#FDBD84] text-sm uppercase tracking-widest">ACCUEIL</span>
+            <h1 className="font-title text-white text-4xl lg:text-5xl 2xl:text-6xl 2xl:leading-[5rem]">Un univers dédié aux recettes et astuces écologiques du quotidien. </h1>
+          </div>
+        </main>
 
-        <section className='container mx-auto'>
-          <div className='w-2/3'>
-            <div className='grid grid-cols-7 gap-10'>
+        <section className='px-4 md:px-0 container mx-auto'>
+          <div className='lg:w-2/3'>
+            <div className='flex flex-col md:grid md:grid-cols-7 gap-10'>
               <div className='grid grid-rows-1 col-span-3'>
                 <Link href={`/recipe/${recipes[0].id}`} className="hover:scale-105 transition-all">
                   <Tilt className='bg-gradient-to-t from-[#D9D9D9]/10 to-transparent rounded-xl p-8 2xl:p-14 flex flex-col relative' style={{}}>
@@ -50,7 +56,7 @@ export default function Home({ recipes }) {
 
               <div className='grid grid-rows-2 gap-10 col-span-4'>
                 <Link href={`/recipe/${recipes[1].id}`} className="hover:scale-105 transition-all">
-                  <Tilt className='bg-gradient-to-l from-[#D9D9D9]/10 to-transparent rounded-xl px-5 h-full grid grid-cols-3 items-center gap-5' style={{}}>
+                  <Tilt className='bg-gradient-to-l from-[#D9D9D9]/10 to-transparent rounded-xl py-6 md:py-0 px-10 h-full grid grid-cols-3 items-center gap-5' style={{}}>
                     <div className='relative parallax-tilt'>
                       <img className='blur-xl absolute top-0 -z-10' src={recipes[1].properties.Image.files[0].file.url} />
                       <img src={recipes[1].properties.Image.files[0].file.url} />
@@ -66,7 +72,7 @@ export default function Home({ recipes }) {
                 </Link>
 
                 <Link href={`/recipe/${recipes[2].id}`} className="hover:scale-105 transition-all">
-                  <Tilt className='bg-gradient-to-l from-[#D9D9D9]/10 to-transparent rounded-xl px-5 h-full grid grid-cols-3 items-center gap-8' style={{}}>
+                  <Tilt className='bg-gradient-to-l from-[#D9D9D9]/10 to-transparent rounded-xl py-6 md:py-0 px-10 h-full grid grid-cols-3 items-center gap-8' style={{}}>
                     <div className='relative parallax-tilt'>
                       <img className='blur-xl absolute top-0 -z-10' src={recipes[2].properties.Image.files[0].file.url} />
                       <img src={recipes[2].properties.Image.files[0].file.url} />
@@ -87,9 +93,9 @@ export default function Home({ recipes }) {
 
         </section>
 
-        <div className='container mx-auto'>
+        <div className='px-4 md:px-0 container mx-auto'>
           <div className="my-24 flex flex-col gap-5">
-            <div className='flex flex-row justify-between items-center'>
+            <div className='flex flex-col md:flex-row gap-8 justify-between md:items-center'>
               <h2 className="text-4xl font-title text-white">Nos plats principaux</h2>
               <Link href={'/'} className="hover:scale-110 transition-all">
                 <p className='text-[#FDBD84] uppercase font-body text-xs flex flex-row gap-5'>Voir la catégorie
@@ -100,7 +106,7 @@ export default function Home({ recipes }) {
               </Link>
             </div>
             <hr className='opacity-5 mb-10 bg-white h-1 rounded-full' />
-            <div className="flex flex-row flex-nowrap gap-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
               {recipes.slice(0, limit_size).map(recipe => {
                 if (recipe.properties['Type de plat'].select.name == "Plat principal") {
                   return (
@@ -112,7 +118,7 @@ export default function Home({ recipes }) {
           </div>
 
           <div className="my-24 flex flex-col gap-5">
-            <div className='flex flex-row justify-between items-center'>
+            <div className='flex flex-col md:flex-row gap-8 justify-between md:items-center'>
               <h2 className="text-4xl font-title text-white">Nos desserts</h2>
               <Link href={'/'} className="hover:scale-110 transition-all">
                 <p className='text-[#FDBD84] uppercase font-body text-xs flex flex-row gap-5'>Voir la catégorie
@@ -123,7 +129,7 @@ export default function Home({ recipes }) {
               </Link>
             </div>
             <hr className='opacity-5 mb-10 bg-white h-1 rounded-full' />
-            <div className="flex flex-row flex-nowrap gap-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
               {recipes.slice(0, limit_size).map(recipe => {
                 if (recipe.properties['Type de plat'].select.name == "Dessert") {
                   return (
@@ -135,7 +141,7 @@ export default function Home({ recipes }) {
           </div>
 
           <div className="my-24 flex flex-col gap-5">
-            <div className='flex flex-row justify-between items-center'>
+            <div className='flex flex-col md:flex-row gap-8 justify-between md:items-center'>
               <h2 className="text-4xl font-title text-white">Nos entrées</h2>
               <Link href={'/'} className="hover:scale-110 transition-all">
                 <p className='text-[#FDBD84] uppercase font-body text-xs flex flex-row gap-5'>Voir la catégorie
@@ -146,7 +152,7 @@ export default function Home({ recipes }) {
               </Link>
             </div>
             <hr className='opacity-5 mb-10 bg-white h-1 rounded-full' />
-            <div className="flex flex-row flex-nowrap gap-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
               {recipes.slice(0, limit_size).map(recipe => {
                 if (recipe.properties['Type de plat'].select.name == "Entrée") {
                   return (

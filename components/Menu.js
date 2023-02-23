@@ -66,13 +66,13 @@ export default function Menu() {
             <AnimatePresence>
                 {open && (
                     <>
-                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={cycleOpen} className="fixed top-0 left-0 h-screen w-screen backdrop:blur-md bg-[#161E2F]/50 z-10">
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={cycleOpen} className="hidden md:block fixed top-0 left-0 h-screen w-screen backdrop:blur-md bg-[#161E2F]/50 z-10">
                             <motion.div className="absolute opacity-80 bg-[#161E2F] w-20 h-20 rounded-full flex items-center justify-center -left-5 -top-5" style={{ translateX: curseurXSpring, translateY: curseurYSpring, }}>
                                 <span className="h-1 w-1/2 bg-white block rotate-45 absolute"></span>
                                 <span className="h-1 w-1/2 bg-white block -rotate-45 absolute"></span>
                             </motion.div>
                         </motion.div>
-                        <motion.div initial={{ width: 0 }} animate={{ width: "50%" }} exit={{ width: 0, transition: { delay: 0.3, duration: 0.3 } }} className="fixed bg-[#161E2F] w-1/2 h-screen top-0 left-0 z-10">
+                        <motion.div initial={{ width: 0 }} animate={{ width: "50%" }} exit={{ width: 0, transition: { delay: 0.3, duration: 0.3 } }} className="hidden md:block fixed bg-[#161E2F] w-1/2 h-screen top-0 left-0 z-10">
                             <svg className="absolute right-0 translate-x-full" width="66" height="982" viewBox="0 0 66 982" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M41.3194 -1.13352e-06L48.2274 81.8333C54.8772 163.667 69.0808 327.333 65.4008 491C61.979 654.667 41.3193 818.333 30.9895 900.167L20.6597 982L-2.7063e-06 982L6.98141e-07 900.167C4.10258e-06 818.333 1.09115e-05 654.667 1.77203e-05 491C2.45292e-05 327.333 3.13381e-05 163.667 3.47425e-05 81.8333L3.8147e-05 -3.03122e-06L41.3194 -1.13352e-06Z" fill="#161E2F" />
                             </svg>
@@ -84,15 +84,36 @@ export default function Menu() {
                             </svg>
 
                             <div className="flex flex-col justify-between p-16 h-full">
-                                <motion.div initial="closed" animate="open" variants={sideVariants} exit={{opacity: 0}}  className="flex flex-row flex-nowrap gap-5">
+                                <motion.div initial="closed" animate="open" variants={sideVariants} exit={{ opacity: 0 }} className="flex flex-row flex-nowrap gap-5">
                                     <Image alt='logo' src={logo} className="w-5" />
-                                    <p className="font-body text-2xl text-white font-bold">Totor & Jadou</p>
+                                    <motion.p variants={itemVariants} className="font-body text-2xl text-white font-bold">Totor & Jadou</motion.p>
                                 </motion.div>
-                                <motion.div initial="closed" animate="open" variants={sideVariants} exit={{opacity: 0}} className="grid gap-16">
+                                <motion.div initial="closed" animate="open" variants={sideVariants} exit={{ opacity: 0 }} className="grid gap-16">
                                     <Link href={'/'} className={currentRoute === "/" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all">Cuisine</motion.span></Link>
                                     <Link href={'/maison'} className={currentRoute === "/maison" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all">Maison</motion.span></Link>
                                     <Link href={'/blog'} className={currentRoute === "/blog" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all">Blog</motion.span></Link>
                                 </motion.div>
+                            </div>
+                        </motion.div>
+
+                        {/* Menu for phone */}
+                        <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} exit={{ width: 0, transition: { delay: 0.3, duration: 0.3 } }} className="fixed block md:hidden bg-[#161E2F] w-1/2 h-screen top-0 left-0 z-20">
+                            <div className="flex flex-col items-center text-center justify-between p-16 h-full">
+                                <motion.div initial="closed" animate="open" variants={sideVariants} exit={{ opacity: 0 }} className="flex flex-row flex-nowrap gap-5">
+                                    <Image alt='logo' src={logo} className="w-5" />
+                                    <motion.p variants={itemVariants} className="font-body text-2xl text-white font-bold">Totor & Jadou</motion.p>
+                                </motion.div>
+                                <motion.div initial="closed" animate="open" variants={sideVariants} exit={{ opacity: 0 }} className="grid gap-10">
+                                    <Link href={'/'} className={currentRoute === "/" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-6xl font-bold text-white/50 hover:text-white transition-all">Cuisine</motion.span></Link>
+                                    <Link href={'/maison'} className={currentRoute === "/maison" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-6xl font-bold text-white/50 hover:text-white transition-all">Maison</motion.span></Link>
+                                    <Link href={'/blog'} className={currentRoute === "/blog" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-6xl font-bold text-white/50 hover:text-white transition-all">Blog</motion.span></Link>
+                                </motion.div>
+                                <div className="flex justify-center w-full">
+                                    <div className="relative opacity-80 bg-black/80 w-20 h-20 rounded-full flex items-center justify-center active:scale-90 transition-all" onClick={cycleOpen}>
+                                        <span className="h-1 w-1/2 bg-white block rotate-45 absolute"></span>
+                                        <span className="h-1 w-1/2 bg-white block -rotate-45 absolute"></span>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
                     </>

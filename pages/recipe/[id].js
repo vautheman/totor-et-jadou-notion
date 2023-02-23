@@ -2,8 +2,11 @@ import Nav from '@/components/Nav';
 import { Client } from '@notionhq/client'
 import Head from 'next/head'
 import Layout from '@/components/Layout';
+import { motion, useMotionValue, useSpring, useCycle, AnimatePresence } from 'framer-motion'
 
 export default function Recipe({ recipe, recipeParent }) {
+
+    const [open, cycleOpen] = useCycle(false, true);
 
     return (
         <>
@@ -15,27 +18,31 @@ export default function Recipe({ recipe, recipeParent }) {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
-                <div className='grid grid-cols-3 container mx-auto gap-16'>
-                    <div className='col-span-2 relative h-screen grid grid-rows-6'>
+                <div className='px-4 md:px-0 grid md:grid-cols-3 container mx-auto gap-16'>
+                    <div className='col-span-2 relative h-screen grid md:grid-rows-6 text-center md:text-left'>
                         <Nav />
                         <div className='relative row-span-2'>
-                            <div className='absolute mb-10 right-0 translate-x-1/2 2xl:translate-x-1/3 w-56 2xl:w-72'>
+                            <div className='hidden md:block absolute mb-10 right-0 translate-x-1/2 2xl:translate-x-1/3 w-56 2xl:w-72'>
                                 <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
                                 <img src={recipeParent.properties.Image.files[0].file.url} />
                             </div>
 
-                            <div className='w-4/5 h-full flex flex-col justify-between'>
+                            <div className='md:w-4/5 h-full flex flex-col justify-between'>
                                 <div>
                                     <span className="font-body font-medium text-[#FDBD84] text-sm uppercase tracking-widest">{recipeParent.properties && recipeParent.properties['Type de plat'].select.name}</span>
-                                    <h1 className="mb-14 font-title text-white text-5xl leading-[4rem] 2xl:text-6xl 2xl:leading-[4.5rem]">{recipeParent.properties && recipeParent.properties.Nom.title[0].plain_text}</h1>
+                                    <h1 className="mb-14 font-title text-white text-4xl md:text-5xl md:leading-[4rem] 2xl:text-6xl 2xl:leading-[4.5rem]">{recipeParent.properties && recipeParent.properties.Nom.title[0].plain_text}</h1>
+                                    <div className='block md:hidden mx-auto relative mb-10 right-0 w-56'>
+                                        <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
+                                        <img src={recipeParent.properties.Image.files[0].file.url} />
+                                    </div>
                                 </div>
                                 <h3 className='font-title text-2xl 2xl:text-3xl text-white mb-8'>Étapes à suivre</h3>
                             </div>
                         </div>
 
 
-                        <div className='row-span-3 mask-alpha scrollbar-custom flex flex-col gap-12 overflow-y-auto mb-10 2xl:mr-12'>
-                            <ol className='pb-52 w-4/5 list-decimal list-inside text-white/70 font-body gap-4 2xl:gap-8 flex flex-col font-light 2xl:text-xl'>
+                        <div className='row-span-3 md:mask-alpha md:scrollbar-custom flex flex-col gap-12 md:overflow-y-auto mb-10 2xl:mr-12'>
+                            <ol className='text-left pb-52 md:w-4/5 list-decimal list-inside text-white/70 font-body gap-4 2xl:gap-8 flex flex-col font-light 2xl:text-xl'>
                                 {recipe.map(item => {
                                     return item.numbered_list_item &&
                                         <li key={item.id}>{item.numbered_list_item.rich_text[0].plain_text}</li>
@@ -44,7 +51,7 @@ export default function Recipe({ recipe, recipeParent }) {
                         </div>
                     </div>
 
-                    <div className='h-screen grid items-center py-3'>
+                    <div className='hidden md:grid h-screen items-center py-3'>
                         <div className='bg-white rounded-3xl h-full p-3 flex flex-col justify-between'>
                             <div className='flex flex-col gap-8 py-20 p-16 2xl:px-24'>
                                 <div className='flex flex-col gap-2 2xl:text-lg'>
@@ -78,10 +85,44 @@ export default function Recipe({ recipe, recipeParent }) {
                     </div>
                 </div>
 
-                {
-                    /* console.log(recipeParent) */
-                    console.log(recipeParent)
-                }
+                <div className='w-full p-2 fixed bottom-0 z-10'>
+                    <div className='bg-[#A2A8BA] w-full h-20 rounded-3xl shadow-md'>
+                        <ul className='flex flex-row flex-nowrap text-white w-full gap-5 p-8 justify-around h-full items-center'>
+                            <li onClick={cycleOpen} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-shopping-bag-3-line ri-2x"></i></li>
+                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-message-3-line ri-2x"></i></li>
+                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-image-line ri-2x"></i></li>
+                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-share-line ri-2x"></i></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <AnimatePresence>
+                    {open && (
+                        <>
+                            <motion.div initial={{ height: 0 }} animate={{ height: "83%" }} exit={{ height: 0, transition: { duration: 0.3 } }} className='fixed bg-white bottom-0 w-full rounded-t-3xl overflow-y-auto'>
+                                <div className='flex flex-col gap-8 py-20 p-16 2xl:px-24'>
+                                    <div className='flex flex-col gap-2 2xl:text-lg'>
+                                        <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-black/50"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
+                                        <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-black/50"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
+                                    </div>
+                                    <h3 className='font-title text-2xl 2xl:text-3xl'>Ingrédients</h3>
+                                    <fieldset className="tasks-list">
+                                        {recipe.map((item, index) => {
+                                            return item.to_do && (
+                                                <label key={item.id} className="tasks-list-item py-2">
+                                                    <input type="checkbox" name={`task_${index}`} value="1" className="tasks-list-cb" />
+                                                    <span className="tasks-list-mark"></span>
+                                                    <span className="tasks-list-desc">{item.to_do.rich_text[0].plain_text}</span>
+                                                </label>
+                                            )
+                                        })}
+
+                                    </fieldset>
+                                </div>
+                            </motion.div>
+                        </>
+                    )}
+                </AnimatePresence>
             </Layout>
         </>
     )
