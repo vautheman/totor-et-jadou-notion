@@ -29,7 +29,7 @@ export default function Nav(props) {
 
 
     return (
-        <header className="w-100 container mx-auto flex justify-between h-min py-5 items-center mb-14 gap-10">
+        <header className="row-span-1 w-100 container mx-auto flex justify-between h-min py-5 items-center mb-14 gap-10">
             <Menu />
             <Link className='flex-1' href={'/'}>
                 <div className='flex gap-3 flex-nowrap'>
