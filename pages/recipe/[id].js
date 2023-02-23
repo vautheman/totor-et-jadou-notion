@@ -99,7 +99,7 @@ export default function Recipe({ recipe, recipeParent }) {
                 <AnimatePresence>
                     {open && (
                         <>
-                            <motion.div initial={{ height: 0 }} animate={{ height: "83%" }} exit={{ height: 0, transition: { duration: 0.3 } }} className='fixed bg-white bottom-0 w-full rounded-t-3xl overflow-y-auto'>
+                            <motion.div initial={{ height: 0 }} animate={{ height: "83%" }} exit={{ height: 0, transition: { duration: 0.3 } }} className='block md:hidden fixed bg-white bottom-0 w-full rounded-t-3xl overflow-y-auto'>
                                 <div className='flex flex-col gap-8 py-20 p-16 2xl:px-24'>
                                     <div className='flex flex-col gap-2 2xl:text-lg'>
                                         <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-black/50"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
