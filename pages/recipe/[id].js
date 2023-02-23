@@ -85,7 +85,7 @@ export default function Recipe({ recipe, recipeParent }) {
                     </div>
                 </div>
 
-                <div className='w-full p-2 fixed bottom-0 z-10'>
+                <div className='w-full p-2 fixed bottom-0 z-10 hidden'>
                     <div className='bg-[#A2A8BA] w-full h-20 rounded-3xl shadow-md'>
                         <ul className='flex flex-row flex-nowrap text-white w-full gap-5 p-8 justify-around h-full items-center'>
                             <li onClick={cycleOpen} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-shopping-bag-3-line ri-2x"></i></li>
