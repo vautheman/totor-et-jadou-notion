@@ -66,7 +66,7 @@ export default function Menu() {
             <AnimatePresence>
                 {open && (
                     <>
-                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={cycleOpen} className="hidden md:block fixed top-0 left-0 h-screen w-screen backdrop:blur-md bg-[#161E2F]/50 z-10">
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {duration: 0.1, delay: 0} }} exit={{ opacity: 0 }} onClick={cycleOpen} className="hidden md:block fixed top-0 left-0 h-screen w-screen backdrop-blur-lg bg-[#161E2F]/50 z-10">
                             <motion.div className="absolute opacity-80 bg-[#161E2F] w-20 h-20 rounded-full flex items-center justify-center -left-5 -top-5" style={{ translateX: curseurXSpring, translateY: curseurYSpring, }}>
                                 <span className="h-1 w-1/2 bg-white block rotate-45 absolute"></span>
                                 <span className="h-1 w-1/2 bg-white block -rotate-45 absolute"></span>
