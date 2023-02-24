@@ -109,7 +109,7 @@ export default function LegumeSaison({ data }) {
                                                         return legume.properties.Type.multi_select[0].name == 'Légume' &&
                                                             legume.properties.Mois.multi_select.map(Mois => {
                                                                 if (Mois.name.toLowerCase() == currentMonth) {
-                                                                    return <motion.li variants={itemVariants} className='hover:scale-105 transition-all'><Tilt style={{}} key={legume.id} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg py-2 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
+                                                                    return <motion.li variants={itemVariants} className='hover:scale-105 transition-all' key={legume.id}><Tilt style={{}} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg py-2 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
                                                                 }
                                                             })
                                                     })}
@@ -123,7 +123,7 @@ export default function LegumeSaison({ data }) {
                                                         return legume.properties.Type.multi_select[0].name == 'Fruit' &&
                                                             legume.properties.Mois.multi_select.map(Mois => {
                                                                 if (Mois.name.toLowerCase() == currentMonth) {
-                                                                    return <motion.li variants={itemVariants} className='hover:scale-105 transition-all'><Tilt style={{}} key={legume.id} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg py-2 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
+                                                                    return <motion.li variants={itemVariants} className='hover:scale-105 transition-all' key={legume.id}><Tilt style={{}} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg py-2 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
                                                                 }
                                                             })
                                                     })}
