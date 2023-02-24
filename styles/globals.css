@@ -19,6 +19,11 @@ div[data-tilt] {
     mask-mode: alpha;
 }
 
+.mask-alpha-to-r {
+    mask-image: linear-gradient(to right, black 70%, transparent 90%);
+    mask-mode: alpha;
+}
+
 .scrollbar-custom {
     @apply scrollbar scrollbar-thumb-[#FDBD84] scrollbar-w-2 scrollbar-track-rounded-full scrollbar-thumb-rounded-full scrollbar-track-white/20
 }

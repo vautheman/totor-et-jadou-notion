@@ -7,11 +7,13 @@ import Card from '@/components/Card'
 import Footer from '@/components/Footer'
 import Layout from '@/components/Layout'
 import Image from "next/image";
+import LegumeSaison from '@/components/LegumeSaison'
 
-export default function Home({ recipes }) {
+export default function Home({ recipes, legumes }) {
 
   const limit_size = 10;
 
+  
   return (
     <>
       <Layout>
@@ -164,6 +166,8 @@ export default function Home({ recipes }) {
           </div>
         </div>
 
+        <LegumeSaison data={legumes} />
+
         <Footer />
       </Layout>
     </>
@@ -194,9 +198,17 @@ export async function getServerSideProps() {
     }
   })
 
+
+  /* Légume de saison database */
+  const legumeDatabaseId = process.env.NOTION_LEGUME_DATABASE_ID;
+  const legumes = await notion.databases.query({
+    database_id: legumeDatabaseId,
+  })
+
   return {
     props: {
-      recipes: recipes.results
+      recipes: recipes.results,
+      legumes: legumes.results
     }
   }
 }
