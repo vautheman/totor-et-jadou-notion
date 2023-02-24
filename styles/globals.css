@@ -16,7 +16,8 @@ div[data-tilt] {
 
 .no-parallax { /* Corrige le bug de profondeur sur safari */
     transform: perspective(1000px);
-    transform: translateZ(200px);
+    transform: translateZ(800px);
+    z-index: 9999 !important;
 }
 
 .mask-alpha {
