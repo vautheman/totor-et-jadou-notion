@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Tilt from 'react-vanilla-tilt'
 
 export default function LegumeSaison({ data }) {
-    
+
     const legumes = data;
 
     const [selectedId, setSelectedId] = useState(null)
@@ -73,7 +73,7 @@ export default function LegumeSaison({ data }) {
 
     return (
         <>
-            <div className='container mx-auto'>
+            <div className='px-4 md:px-0 container mx-auto'>
                 <motion.div layoutId='1' onClick={() => setSelectedId('1')}>
                     <div className='relative w-full bg-gradient-to-r from-[#D9D9D9]/10 to-transparent p-8 rounded-3xl flex flex-row justify-between items-center cursor-pointer hover:scale-105 transition-all active:scale-95'>
                         <h2 className='font-title text-white text-3xl'>Légume de saison</h2>
@@ -91,45 +91,47 @@ export default function LegumeSaison({ data }) {
                         <>
                             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='fixed top-0 left-0 w-full h-screen flex items-center justify-center'>
                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }} exit={{ opacity: 0 }} className=' bg-[#161E2F]/50 backdrop-blur-md fixed top-0 left-0 w-full h-full'>
-                                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.1, delay: 0 } }} exit={{ opacity: 0 }} onClick={() => setSelectedId(null)} className="hidden md:block fixed top-0 left-0 h-screen w-screen backdrop-blur-lg bg-[#161E2F]/50 z-10">
-                                        <motion.div className="absolute opacity-80 bg-[#161E2F] w-20 h-20 rounded-full flex items-center justify-center -left-5 -top-5" style={{ translateX: curseurXSpring, translateY: curseurYSpring, }}>
+                                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.1, delay: 0 } }} exit={{ opacity: 0 }} onClick={() => setSelectedId(null)} className="hidden md:block fixed top-0 left-0 h-screen w-screen backdrop-blur-lg bg-[#161E2F]/50 z-10 cursor-pointer"></motion.div>
+                                </motion.div>
+                                <motion.div layoutId={selectedId} className='w-full xl:w-2/3 h-full xl:h-5/6 bg-[#161E2F] py-8 xl:rounded-3xl justify-between relative items-center z-10'>
+                                    {/* <span className='absolute py-1 px-5 -bottom-4 left-1/2 -translate-x-1/2 rounded-lg z-20 bg-[#FDBD84] text-black font-body text-xs 2xl:text-2xl capitalize'>{currentMonth}</span> */}
+                                    <div className='overflow-y-scroll overflow-x-hidden h-full scrollbar-custom px-10 lg:px-20'>
+                                        <motion.div onClick={() => setSelectedId(null)} className="absolute z-10 py-1 px-5 bottom-5 xl:bottom-0 left-1/2 -translate-x-1/2 xl:translate-y-1/2 bg-white/20 w-20 h-20 rounded-full flex items-center justify-center hover:scale-110 cursor-pointer active:scale-95 transition-all">
                                             <span className="h-1 w-1/2 bg-white block rotate-45 absolute"></span>
                                             <span className="h-1 w-1/2 bg-white block -rotate-45 absolute"></span>
                                         </motion.div>
-                                    </motion.div>
-                                </motion.div>
-                                <motion.div layoutId={selectedId} className='w-2/3 bg-[#161E2F] px-20 py-8 rounded-3xl justify-between relative items-center z-10'>
-                                    <span className='absolute py-1 px-5 -bottom-4 left-1/2 -translate-x-1/2 rounded-lg z-20 bg-[#FDBD84] text-black font-body text-xs 2xl:text-2xl capitalize'>{currentMonth}</span>
-                                    <div className='grid grid-cols-2 gap-16'>
-                                        <motion.div initial="closed" animate="open" variants={sideVariants} className='flex flex-col gap-4'>
-                                            <h2 className='font-title text-white text-4xl'>Légume</h2>
-                                            <hr className='opacity-5 bg-white h-1 rounded-full' />
-                                            <ul className='grid grid-cols-2 gap-1'>
-                                                {legumes.map(legume => {
-                                                    return legume.properties.Type.multi_select[0].name == 'Légume' &&
-                                                        legume.properties.Mois.multi_select.map(Mois => {
-                                                            if (Mois.name.toLowerCase() == currentMonth) {
-                                                                return <motion.li variants={itemVariants} className='hover:scale-105 transition-all'><Tilt style={{}} key={legume.id} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg py-2 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
-                                                            }
-                                                        })
-                                                })}
-                                            </ul>
-                                        </motion.div>
-                                        <motion.div initial="closed" animate="open" variants={sideVariants} className='flex flex-col gap-4'>
-                                            <h2 className='font-title text-white text-4xl'>Fruit</h2>
-                                            <hr className='opacity-5 bg-white h-1 rounded-full' />
-                                            <ul className='grid grid-cols-2 gap-1'>
-                                                {legumes.sort().map(legume => {
-                                                    return legume.properties.Type.multi_select[0].name == 'Fruit' &&
-                                                        legume.properties.Mois.multi_select.map(Mois => {
-                                                            if (Mois.name.toLowerCase() == currentMonth) {
-                                                                return <motion.li variants={itemVariants} className='hover:scale-105 transition-all'><Tilt style={{}} key={legume.id} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg py-2 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
-                                                            }
-                                                        })
-                                                })}
-                                            </ul>
-                                        </motion.div>
+                                        <div className='grid lg:grid-cols-2 gap-16'>
+                                            <motion.div initial="closed" animate="open" variants={sideVariants} className='flex flex-col gap-4'>
+                                                <h2 className='font-title text-white text-4xl'>Légume</h2>
+                                                <hr className='opacity-5 bg-white h-1 rounded-full' />
+                                                <ul className='grid md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 gap-1'>
+                                                    {legumes.map(legume => {
+                                                        return legume.properties.Type.multi_select[0].name == 'Légume' &&
+                                                            legume.properties.Mois.multi_select.map(Mois => {
+                                                                if (Mois.name.toLowerCase() == currentMonth) {
+                                                                    return <motion.li variants={itemVariants} className='hover:scale-105 transition-all'><Tilt style={{}} key={legume.id} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg py-2 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
+                                                                }
+                                                            })
+                                                    })}
+                                                </ul>
+                                            </motion.div>
+                                            <motion.div initial="closed" animate="open" variants={sideVariants} className='flex flex-col gap-4'>
+                                                <h2 className='font-title text-white text-4xl'>Fruit</h2>
+                                                <hr className='opacity-5 bg-white h-1 rounded-full' />
+                                                <ul className='grid md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 gap-1'>
+                                                    {legumes.sort().map(legume => {
+                                                        return legume.properties.Type.multi_select[0].name == 'Fruit' &&
+                                                            legume.properties.Mois.multi_select.map(Mois => {
+                                                                if (Mois.name.toLowerCase() == currentMonth) {
+                                                                    return <motion.li variants={itemVariants} className='hover:scale-105 transition-all'><Tilt style={{}} key={legume.id} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg py-2 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
+                                                                }
+                                                            })
+                                                    })}
+                                                </ul>
+                                            </motion.div>
+                                        </div>
                                     </div>
+
                                 </motion.div>
                             </motion.div>
                         </>
