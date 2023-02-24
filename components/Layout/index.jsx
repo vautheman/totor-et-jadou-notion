@@ -22,7 +22,7 @@ const blackBox = {
 
 const Layout = ({ children }) => (
     <motion.div>
-        <motion.div variants={blackBox} initial="initial" exit="animate" className="fixed w-screen h-screen z-50 bottom-0 left-0 bg-[#161E2F]"></motion.div>
+        <motion.div variants={blackBox} initial="initial" exit="animate" className="fixed w-screen h-screen z-50 bottom-0 left-0 bg-[#161E2F] no-parallax"></motion.div>
         {children}
     </motion.div>
 );

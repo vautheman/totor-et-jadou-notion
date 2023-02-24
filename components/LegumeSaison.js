@@ -89,7 +89,7 @@ export default function LegumeSaison({ data }) {
                 <AnimatePresence>
                     {selectedId && (
                         <>
-                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='fixed top-0 left-0 w-full h-screen flex items-center justify-center'>
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='fixed top-0 left-0 w-full h-screen flex items-center justify-center no-parallax'>
                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.3 } }} exit={{ opacity: 0 }} className=' bg-[#161E2F]/50 backdrop-blur-md fixed top-0 left-0 w-full h-full'>
                                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 0.1, delay: 0 } }} exit={{ opacity: 0 }} onClick={() => setSelectedId(null)} className="hidden md:block fixed top-0 left-0 h-screen w-screen backdrop-blur-lg bg-[#161E2F]/50 z-10 cursor-pointer"></motion.div>
                                 </motion.div>

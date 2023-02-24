@@ -14,6 +14,11 @@ div[data-tilt] {
     transform: translateZ(70px);
 }
 
+.no-parallax { /* Corrige le bug de profondeur sur safari */
+    transform: perspective(1000px);
+    transform: translateZ(200px);
+}
+
 .mask-alpha {
     mask-image: linear-gradient(black 50%, transparent 90%);
     mask-mode: alpha;

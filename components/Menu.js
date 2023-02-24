@@ -72,7 +72,7 @@ export default function Menu() {
                                 <span className="h-1 w-1/2 bg-white block -rotate-45 absolute"></span>
                             </motion.div>
                         </motion.div>
-                        <motion.div initial={{ width: 0 }} animate={{ width: "50%" }} exit={{ width: 0, transition: { delay: 0.3, duration: 0.3 } }} className="hidden md:block fixed bg-[#161E2F] w-1/2 h-screen top-0 left-0 z-10">
+                        <motion.div initial={{ width: 0 }} animate={{ width: "50%" }} exit={{ width: 0, transition: { delay: 0.3, duration: 0.3 } }} className="hidden md:block fixed bg-[#161E2F] w-1/2 h-screen top-0 left-0 z-10 no-parallax">
                             <svg className="absolute right-0 translate-x-full" width="66" height="982" viewBox="0 0 66 982" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M41.3194 -1.13352e-06L48.2274 81.8333C54.8772 163.667 69.0808 327.333 65.4008 491C61.979 654.667 41.3193 818.333 30.9895 900.167L20.6597 982L-2.7063e-06 982L6.98141e-07 900.167C4.10258e-06 818.333 1.09115e-05 654.667 1.77203e-05 491C2.45292e-05 327.333 3.13381e-05 163.667 3.47425e-05 81.8333L3.8147e-05 -3.03122e-06L41.3194 -1.13352e-06Z" fill="#161E2F" />
                             </svg>
@@ -89,9 +89,9 @@ export default function Menu() {
                                     <motion.p variants={itemVariants} className="font-body text-2xl text-white font-bold">Totor & Jadou</motion.p>
                                 </motion.div>
                                 <motion.div initial="closed" animate="open" variants={sideVariants} exit={{ opacity: 0 }} className="grid gap-16">
-                                    <Link href={'/'} className={currentRoute === "/" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all">Cuisine</motion.span></Link>
-                                    <Link href={'/maison'} className={currentRoute === "/maison" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all">Maison</motion.span></Link>
-                                    <Link href={'/blog'} className={currentRoute === "/blog" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all">Blog</motion.span></Link>
+                                    <Link href={'/'} className={currentRoute === "/" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all opacity-0">Cuisine</motion.span></Link>
+                                    <Link href={'/maison'} className={currentRoute === "/maison" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all opacity-0">Maison</motion.span></Link>
+                                    <Link href={'/blog'} className={currentRoute === "/blog" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all opacity-0">Blog</motion.span></Link>
                                 </motion.div>
                             </div>
                         </motion.div>
