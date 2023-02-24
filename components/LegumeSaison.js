@@ -76,7 +76,7 @@ export default function LegumeSaison({ data }) {
             <div className='px-4 md:px-0 container mx-auto'>
                 <motion.div layoutId='1' onClick={() => setSelectedId('1')}>
                     <div className='relative w-full bg-gradient-to-r from-[#D9D9D9]/10 to-transparent p-8 rounded-3xl flex flex-row justify-between items-center cursor-pointer hover:scale-105 transition-all active:scale-95'>
-                        <h2 className='font-title text-white text-3xl'>Légume de saison</h2>
+                        <h2 className='font-title text-white text-3xl'>Légume de {currentMonth}</h2>
                         <ul className='flex flex-row flex-nowrap gap-8 flex-1 justify-end relative mask-alpha-to-r'>
                             {legumesTab}
                         </ul>
