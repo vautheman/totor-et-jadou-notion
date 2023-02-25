@@ -18,7 +18,7 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
-                <div className='px-4 md:px-0 grid lg:grid-cols-3 container mx-auto gap-16'>
+                <div className='px-4 xl:px-0 grid lg:grid-cols-3 container mx-auto gap-16'>
                     <div className='col-span-2 relative lg:h-screen grid lg:grid-rows-6 text-center md:text-left'>
                         <Nav recipe={recipes} />
                         <div className='relative row-span-2'>

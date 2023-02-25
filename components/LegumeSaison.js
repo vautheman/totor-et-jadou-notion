@@ -73,9 +73,9 @@ export default function LegumeSaison({ data }) {
 
     return (
         <>
-            <div className='px-4 md:px-0 container mx-auto'>
+            <div className='px-4 xl:px-0 container mx-auto'>
                 <motion.div layoutId='1' onClick={() => setSelectedId('1')}>
-                    <div className='relative w-full bg-gradient-to-r from-[#D9D9D9]/10 to-transparent p-8 rounded-3xl flex flex-row justify-between items-center cursor-pointer hover:scale-105 transition-all active:scale-95'>
+                    <div className='relative w-full bg-gradient-to-r from-[#D9D9D9]/10 to-transparent p-8 rounded-3xl flex flex-row gap-20 justify-between items-center cursor-pointer hover:scale-105 transition-all active:scale-95'>
                         <h2 className='font-title text-white text-3xl'>Légumes et fruits de saison</h2>
                         <ul className='flex flex-row flex-nowrap gap-8 flex-1 justify-end relative mask-alpha-to-r'>
                             {legumesTab}
@@ -109,7 +109,7 @@ export default function LegumeSaison({ data }) {
                                                         return legume.properties.Type.multi_select[0].name == 'Légume' &&
                                                             legume.properties.Mois.multi_select.map(Mois => {
                                                                 if (Mois.name.toLowerCase() == currentMonth) {
-                                                                    return <motion.li variants={itemVariants} className='hover:scale-105 transition-all' key={legume.id}><Tilt style={{}} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg py-2 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
+                                                                    return <motion.li variants={itemVariants} className='hover:scale-105 transition-all' key={legume.id}><Tilt style={{}} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg h-12 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
                                                                 }
                                                             })
                                                     })}
@@ -123,7 +123,7 @@ export default function LegumeSaison({ data }) {
                                                         return legume.properties.Type.multi_select[0].name == 'Fruit' &&
                                                             legume.properties.Mois.multi_select.map(Mois => {
                                                                 if (Mois.name.toLowerCase() == currentMonth) {
-                                                                    return <motion.li variants={itemVariants} className='hover:scale-105 transition-all' key={legume.id}><Tilt style={{}} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg py-2 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
+                                                                    return <motion.li variants={itemVariants} className='hover:scale-105 transition-all' key={legume.id}><Tilt style={{}} className='flex flex-row items-center gap-2 text-white/80 font-body bg-gradient-to-r from-[#D9D9D9]/10 to-transparent rounded-lg h-12 px-4'><img className='w-8 parallax-tilt' src={legume.properties.Image.files[0].file.url} alt="" />{legume.properties.Nom.title[0].plain_text}</Tilt></motion.li>
                                                                 }
                                                             })
                                                     })}

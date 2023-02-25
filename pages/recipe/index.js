@@ -19,7 +19,7 @@ export default function Recipe({ recipes }) {
 
                 <Nav recipe={recipes} />
 
-                <div className='px-4 md:px-0 container mx-auto'>
+                <div className='px-4 xl:px-0 container mx-auto'>
                     <div className="my-24 flex flex-col gap-5">
                         <div className='flex flex-col md:flex-row gap-8 justify-between md:items-center'>
                             <h2 className="text-4xl font-title text-white">Nos plats principaux</h2>
