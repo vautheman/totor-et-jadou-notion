@@ -13,7 +13,7 @@ export default function Home({ recipes, legumes }) {
 
   const limit_size = 10;
 
-  
+
   return (
     <>
       <Layout>
@@ -73,18 +73,15 @@ export default function Home({ recipes, legumes }) {
                   </Tilt>
                 </Link>
 
-                <Link href={`/recipe/${recipes[2].id}`} className="hover:scale-105 transition-all">
+                <Link href={`/recipe/`} className="hover:scale-105 transition-all">
                   <Tilt className='bg-gradient-to-l from-[#D9D9D9]/10 to-transparent rounded-xl py-6 md:py-0 px-10 h-full grid grid-cols-3 items-center gap-8' style={{}}>
-                    <div className='relative parallax-tilt'>
-                      <img className='blur-xl absolute top-0 -z-10' src={recipes[2].properties.Image.files[0].file.url} />
-                      <img src={recipes[2].properties.Image.files[0].file.url} />
+                    <div className='relative parallax-tilt flex justify-center'>
+                      <div className='w-3/4 aspect-square bg-white/20 rounded-full flex items-center justify-center'>
+                        <i class="ri-arrow-right-line ri-3x text-white"></i>
+                      </div>
                     </div>
                     <div className='flex flex-col gap-3 col-span-2 parallax-tilt'>
-                      <h2 className='font-title font-medium text-white text-2xl 2xl:text-3xl'>{recipes[2].properties.Nom.title[0].plain_text}</h2>
-                      <p className='text-xs font-body font-medium text-[#A2A8BA] flex gap-2'>
-                        <span>Dificulté : {recipes[2].properties.Difficulté.multi_select[0].name},</span>
-                        <span>Type : {recipes[2].properties['Type de plat'].select.name}</span>
-                      </p>
+                      <h2 className='font-title font-medium text-white text-2xl 2xl:text-3xl'>Découvres toutes nos recettes ici</h2>
                     </div>
                   </Tilt>
                 </Link>

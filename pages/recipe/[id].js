@@ -18,20 +18,20 @@ export default function Recipe({ recipe, recipeParent }) {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
 
-                <div className='px-4 md:px-0 grid md:grid-cols-3 container mx-auto gap-16'>
-                    <div className='col-span-2 relative h-screen grid md:grid-rows-6 text-center md:text-left'>
+                <div className='px-4 md:px-0 grid lg:grid-cols-3 container mx-auto gap-16'>
+                    <div className='col-span-2 relative lg:h-screen grid lg:grid-rows-6 text-center md:text-left'>
                         <Nav />
                         <div className='relative row-span-2'>
-                            <div className='hidden md:block absolute mb-10 right-0 translate-x-1/2 2xl:translate-x-1/3 w-56 2xl:w-72'>
+                            <div className='hidden lg:block absolute mb-10 right-0 lg:translate-x-1/2 2xl:translate-x-1/3 w-56 2xl:w-72'>
                                 <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
                                 <img src={recipeParent.properties.Image.files[0].file.url} />
                             </div>
 
-                            <div className='md:w-4/5 h-full flex flex-col justify-between'>
+                            <div className='lg:w-4/5 h-full flex flex-col justify-between'>
                                 <div>
                                     <span className="font-body font-medium text-[#FDBD84] text-sm uppercase tracking-widest">{recipeParent.properties && recipeParent.properties['Type de plat'].select.name}</span>
                                     <h1 className="mb-14 font-title text-white text-4xl md:text-5xl md:leading-[4rem] 2xl:text-6xl 2xl:leading-[4.5rem]">{recipeParent.properties && recipeParent.properties.Nom.title[0].plain_text}</h1>
-                                    <div className='block md:hidden mx-auto relative mb-10 right-0 w-56'>
+                                    <div className='block lg:hidden mx-auto md:mx-0 relative mb-10 right-0 w-56 md:w-64'>
                                         <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
                                         <img src={recipeParent.properties.Image.files[0].file.url} />
                                     </div>
@@ -41,7 +41,7 @@ export default function Recipe({ recipe, recipeParent }) {
                         </div>
 
 
-                        <div className='row-span-3 mask-alpha scrollbar-custom flex flex-col gap-12 md:overflow-y-auto mb-10 2xl:mr-12'>
+                        <div className='row-span-3 mask-alpha scrollbar-custom flex flex-col gap-12 overflow-y-hidden lg:overflow-y-auto mb-10 2xl:mr-12'>
                             <ol className='text-left pb-52 md:w-4/5 list-decimal list-inside text-white/70 font-body gap-4 2xl:gap-8 flex flex-col font-light 2xl:text-xl'>
                                 {recipe.map(item => {
                                     return item.numbered_list_item &&
@@ -51,7 +51,7 @@ export default function Recipe({ recipe, recipeParent }) {
                         </div>
                     </div>
 
-                    <div className='hidden md:grid h-screen items-center py-3'>
+                    <div className='hidden lg:grid h-screen items-center py-3'>
                         <div className='bg-white rounded-3xl h-full p-3 flex flex-col justify-between'>
                             <div className='flex flex-col gap-8 py-20 p-16 2xl:px-24'>
                                 <div className='flex flex-col gap-2 2xl:text-lg'>
@@ -85,8 +85,8 @@ export default function Recipe({ recipe, recipeParent }) {
                     </div>
                 </div>
 
-                <div className='w-full p-2 fixed bottom-0 z-10 hidden'>
-                    <div className='bg-[#A2A8BA] w-full h-20 rounded-3xl shadow-md'>
+                <div className='w-full p-2 fixed bottom-0 z-10 lg:hidden'>
+                    <div className='bg-[#A2A8BA] h-20 rounded-3xl shadow-md w-full md:w-1/2 mx-auto'>
                         <ul className='flex flex-row flex-nowrap text-white w-full gap-5 p-8 justify-around h-full items-center'>
                             <li onClick={cycleOpen} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-shopping-bag-3-line ri-2x"></i></li>
                             <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-message-3-line ri-2x"></i></li>
@@ -99,7 +99,7 @@ export default function Recipe({ recipe, recipeParent }) {
                 <AnimatePresence>
                     {open && (
                         <>
-                            <motion.div initial={{ height: 0 }} animate={{ height: "83%" }} exit={{ height: 0, transition: { duration: 0.3 } }} className='block md:hidden fixed bg-white bottom-0 w-full rounded-t-3xl overflow-y-auto'>
+                            <motion.div initial={{ height: 0 }} animate={{ height: "83%" }} exit={{ height: 0, transition: { duration: 0.3 } }} className='block lg:hidden fixed bg-white bottom-0 w-full rounded-t-3xl scrollbar-custom overflow-y-auto'>
                                 <div className='flex flex-col gap-8 py-20 p-16 2xl:px-24'>
                                     <div className='flex flex-col gap-2 2xl:text-lg'>
                                         <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-black/50"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>

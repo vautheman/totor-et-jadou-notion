@@ -62,9 +62,9 @@ export default function Nav(props) {
         <header className="px-4 md:px-0 row-span-1 w-100 container mx-auto flex justify-between h-min py-5 items-center mb-14 gap-10">
             <Menu />
             <Link className='md:flex-1' href={'/'}>
-                <div className='flex gap-3 flex-nowrap'>
-                    <Image alt='logo' src={logo} className="w-5" />
-                    <p className="font-body text-2xl text-white font-bold">Totor & Jadou</p>
+                <div className='flex gap-2 sm:gap-3 flex-nowrap items-center'>
+                    <Image alt='logo' src={logo} className="sm:w-5 h-8 w-auto" />
+                    <p className="font-body text-xl sm:text-2xl text-white font-bold">Totor & Jadou</p>
                 </div>
             </Link>
 
