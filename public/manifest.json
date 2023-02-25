@@ -3,9 +3,9 @@
     "background_color": "#259409",
     "display": "standalone",
     "scope": "/",
+    "start_url": "/",
     "name": "Totor & Jadou - Recette de cuisine",
     "short_name": "Totor & Jadou",
-    "start_url": "/",
     "description": "Objectif zéro déchets, recette, soin beauté, produits naturels, plantes d'intérieur... Un quotidien qui nous rends la vie plus agréable.",
     "icons": [{
             "src": "/img/logo-header.png",
