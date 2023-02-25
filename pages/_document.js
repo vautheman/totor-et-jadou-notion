@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/vercel.svg"></link>
-        <meta name="theme-color" content="#042940" />
+        <meta name="theme-color" content="#161E2F" />
       </Head>
       <body className='scrollbar-custom overflow-x-hidden'>
         <Main />
