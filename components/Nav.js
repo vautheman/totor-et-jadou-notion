@@ -82,7 +82,7 @@ export default function Nav(props) {
                             return (
                                 <Link key={recipe.id} href={`/recipe/${recipe.id}`} className='flex flex-row justify-between h-16 items-center gap-4 hover:bg-white/10 rounded-md p-3 transition-all'>
                                     <img className='h-full' src={recipe.properties.Image.files[0].file.url} />
-                                    <p className='flex-1'>{recipe.properties.Nom.title[0].plain_text} <span className='opacity-30'>- {recipes[0].properties['Type de plat'].select.name}</span></p>
+                                    <p className='flex-1'>{recipe.properties.Nom.title[0].plain_text} <span className='opacity-30'>- {recipe.properties['Type de plat'].select.name}</span></p>
                                 </Link>
                             )
                         })}
