@@ -77,7 +77,7 @@ export default function Nav(props) {
 
                 </div>
                 {search &&
-                    <div className='w-full max-h-max absolute grid gap-2 grid-cols-2 bg-[#161E2F] text-white rounded-md mt-2 p-2'>
+                    <div className='w-full max-h-max absolute grid gap-2 grid-cols-1 z-10 bg-[#161E2F] text-white rounded-md mt-2 p-2'>
                         {search.slice(0, 6).map(recipe => {
                             return (
                                 <Link key={recipe.id} href={`/recipe/${recipe.id}`} className='flex flex-row justify-between h-16 items-center gap-4 hover:bg-white/10 rounded-md p-3 transition-all'>
@@ -97,7 +97,7 @@ export default function Nav(props) {
                 {open && (
                     <>
                         <motion.div initial={{ height: 0 }} animate={{ height: "100%" }} exit={{ height: 0, transition: { delay: 0.3, duration: 0.3 } }} className='flex md:hidden flex-col fixed p-8 justify-between items-center w-screen left-0 top-0 bg-[#161E2F] z-50'>
-                            <motion.div initial="closed" animate="open" variants={sideVariants} exit={{opacity: 0}} className='w-full'>
+                            <motion.div initial="closed" animate="open" variants={sideVariants} exit={{ opacity: 0 }} className='w-full'>
                                 <motion.div variants={itemVariants} className='relative'>
                                     <div className='w-max h-full absolute items-center flex right-5'>
                                         <i className="ri-search-2-line ri-lg"></i>

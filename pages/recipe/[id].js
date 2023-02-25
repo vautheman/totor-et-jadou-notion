@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Layout from '@/components/Layout';
 import { motion, useMotionValue, useSpring, useCycle, AnimatePresence } from 'framer-motion'
 
-export default function Recipe({ recipe, recipeParent }) {
+export default function Recipe({ recipe, recipeParent, recipes }) {
 
     const [open, cycleOpen] = useCycle(false, true);
 
@@ -20,7 +20,7 @@ export default function Recipe({ recipe, recipeParent }) {
 
                 <div className='px-4 md:px-0 grid lg:grid-cols-3 container mx-auto gap-16'>
                     <div className='col-span-2 relative lg:h-screen grid lg:grid-rows-6 text-center md:text-left'>
-                        <Nav />
+                        <Nav recipe={recipes} />
                         <div className='relative row-span-2'>
                             <div className='hidden lg:block absolute mb-10 right-0 lg:translate-x-1/2 2xl:translate-x-1/3 w-56 2xl:w-72'>
                                 <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
@@ -41,7 +41,7 @@ export default function Recipe({ recipe, recipeParent }) {
                         </div>
 
 
-                        <div className='row-span-3 mask-alpha scrollbar-custom flex flex-col gap-12 overflow-y-hidden lg:overflow-y-auto mb-10 2xl:mr-12'>
+                        <div className='row-span-3 mask-alpha scrollbar-custom flex flex-col gap-12 overflow-y-auto lg:overflow-y-auto mb-10 2xl:mr-12'>
                             <ol className='text-left pb-52 md:w-4/5 list-decimal list-inside text-white/70 font-body gap-4 2xl:gap-8 flex flex-col font-light 2xl:text-xl'>
                                 {recipe.map(item => {
                                     return item.numbered_list_item &&
@@ -129,6 +129,8 @@ export default function Recipe({ recipe, recipeParent }) {
 }
 
 export async function getServerSideProps({ params }) {
+    const databaseId = process.env.NOTION_DATABASE_ID;
+
     const notion = new Client({
         auth: process.env.NOTION_API_KEY
     })
@@ -146,10 +148,28 @@ export async function getServerSideProps({ params }) {
         page_id: blockId
     })
 
+    const recipes = await notion.databases.query({
+        database_id: databaseId,
+        sorts: [
+            {
+                property: 'Dernière modification',
+                direction: 'descending',
+            },
+        ],
+        filter:
+        {
+            property: "Totor & Jadou",
+            "status": {
+                "equals": "Publié"
+            }
+        }
+    })
+
     return {
         props: {
             recipe: recipe.results,
-            recipeParent
+            recipeParent,
+            recipes: recipes.results
         }
     }
 }

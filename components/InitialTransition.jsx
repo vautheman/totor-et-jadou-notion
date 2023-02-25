@@ -54,7 +54,7 @@ const text = {
 export default function InitialTransition() {
 
     return (
-        <div className="absolute inset-0 flex items-center w-full h-screen justify-center pointer-events-none no-parallax">
+        <div className="fixed inset-0 flex items-center w-full h-screen justify-center pointer-events-none no-parallax">
             <motion.div
                 className="fixed flex justify-center items-center z-50 w-full bg-[#161E2F]"
                 initial="initial"
