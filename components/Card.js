@@ -3,6 +3,7 @@ import Tilt from "react-vanilla-tilt"
 
 export default function Card(props) {
     const recipe = props.recipe;
+
     return (
         <Link scroll={false} href={`/recipe/${recipe.id}`} className="hover:scale-105 transition-all w-full active:scale-95">
             <Tilt className='bg-gradient-to-t from-[#D9D9D9]/10 to-transparent rounded-xl p-8 flex flex-col h-full justify-between' style={{}}>

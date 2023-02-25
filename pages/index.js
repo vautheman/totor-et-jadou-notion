@@ -96,7 +96,7 @@ export default function Home({ recipes, legumes }) {
           <div className="my-24 flex flex-col gap-5">
             <div className='flex flex-col md:flex-row gap-8 justify-between md:items-center'>
               <h2 className="text-4xl font-title text-white">Nos plats principaux</h2>
-              <Link href={'/'} className="hover:scale-110 transition-all">
+              <Link href={{ pathname : '/categorie/', query: {categorie: 'Plat principal'} }} className="hover:scale-110 transition-all">
                 <p className='text-[#FDBD84] uppercase font-body text-xs flex flex-row gap-5'>Voir la catégorie
                   <svg width="106" height="16" viewBox="0 0 106 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M105.707 8.70711C106.098 8.31658 106.098 7.68342 105.707 7.29289L99.3431 0.928932C98.9526 0.538408 98.3195 0.538408 97.9289 0.928932C97.5384 1.31946 97.5384 1.95262 97.9289 2.34315L103.586 8L97.9289 13.6569C97.5384 14.0474 97.5384 14.6805 97.9289 15.0711C98.3195 15.4616 98.9526 15.4616 99.3431 15.0711L105.707 8.70711ZM0 9H105V7H0V9Z" fill="#FDBD84" />
@@ -119,7 +119,7 @@ export default function Home({ recipes, legumes }) {
           <div className="my-24 flex flex-col gap-5">
             <div className='flex flex-col md:flex-row gap-8 justify-between md:items-center'>
               <h2 className="text-4xl font-title text-white">Nos desserts</h2>
-              <Link href={'/'} className="hover:scale-110 transition-all">
+              <Link href={{ pathname : '/categorie/', query: {categorie: 'Dessert'} }} className="hover:scale-110 transition-all">
                 <p className='text-[#FDBD84] uppercase font-body text-xs flex flex-row gap-5'>Voir la catégorie
                   <svg width="106" height="16" viewBox="0 0 106 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M105.707 8.70711C106.098 8.31658 106.098 7.68342 105.707 7.29289L99.3431 0.928932C98.9526 0.538408 98.3195 0.538408 97.9289 0.928932C97.5384 1.31946 97.5384 1.95262 97.9289 2.34315L103.586 8L97.9289 13.6569C97.5384 14.0474 97.5384 14.6805 97.9289 15.0711C98.3195 15.4616 98.9526 15.4616 99.3431 15.0711L105.707 8.70711ZM0 9H105V7H0V9Z" fill="#FDBD84" />
@@ -142,7 +142,7 @@ export default function Home({ recipes, legumes }) {
           <div className="my-24 flex flex-col gap-5">
             <div className='flex flex-col md:flex-row gap-8 justify-between md:items-center'>
               <h2 className="text-4xl font-title text-white">Nos entrées</h2>
-              <Link href={'/'} className="hover:scale-110 transition-all">
+              <Link href={{ pathname : '/categorie/', query: {categorie: 'Entrée'} }} className="hover:scale-110 transition-all">
                 <p className='text-[#FDBD84] uppercase font-body text-xs flex flex-row gap-5'>Voir la catégorie
                   <svg width="106" height="16" viewBox="0 0 106 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M105.707 8.70711C106.098 8.31658 106.098 7.68342 105.707 7.29289L99.3431 0.928932C98.9526 0.538408 98.3195 0.538408 97.9289 0.928932C97.5384 1.31946 97.5384 1.95262 97.9289 2.34315L103.586 8L97.9289 13.6569C97.5384 14.0474 97.5384 14.6805 97.9289 15.0711C98.3195 15.4616 98.9526 15.4616 99.3431 15.0711L105.707 8.70711ZM0 9H105V7H0V9Z" fill="#FDBD84" />

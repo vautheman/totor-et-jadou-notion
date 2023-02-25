@@ -3,6 +3,7 @@ import { Client } from '@notionhq/client'
 import Head from 'next/head'
 import Layout from '@/components/Layout';
 import { motion, useMotionValue, useSpring, useCycle, AnimatePresence } from 'framer-motion'
+import Redacteur from '@/components/Redacteur';
 
 export default function Recipe({ recipe, recipeParent, recipes }) {
 
@@ -13,9 +14,9 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
             <Layout>
                 <Head>
                     <title>{recipeParent.properties && recipeParent.properties.Nom.title[0].plain_text}</title>
-                    {/* <meta name="description" content={recipeParent.properties.Description.rich_text[0].plain_text} /> */}
+                    <meta name="description" content={recipeParent.properties.Description.rich_text[0].plain_text} />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <link rel="icon" href="/favicon.ico" />
+                    <link rel="icon" href="/img/logo-192.jpg" />
                 </Head>
 
                 <div className='px-4 xl:px-0 grid lg:grid-cols-3 container mx-auto gap-16'>
@@ -28,9 +29,12 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                             </div>
 
                             <div className='lg:w-4/5 h-full flex flex-col justify-between'>
-                                <div>
-                                    <span className="font-body font-medium text-[#FDBD84] text-sm uppercase tracking-widest">{recipeParent.properties && recipeParent.properties['Type de plat'].select.name}</span>
-                                    <h1 className="mb-14 font-title text-white text-4xl md:text-5xl md:leading-[4rem] 2xl:text-6xl 2xl:leading-[4.5rem]">{recipeParent.properties && recipeParent.properties.Nom.title[0].plain_text}</h1>
+                                <div className='flex flex-col gap-4'>
+                                    <div>
+                                        <span className="font-body font-medium text-[#FDBD84] text-sm uppercase tracking-widest">{recipeParent.properties && recipeParent.properties['Type de plat'].select.name}</span>
+                                        <h1 className="font-title text-white text-4xl md:text-5xl md:leading-[4rem] 2xl:text-6xl 2xl:leading-[4.5rem]">{recipeParent.properties && recipeParent.properties.Nom.title[0].plain_text}</h1>
+                                    </div>
+                                    <Redacteur name={recipeParent.properties["Rédacteur"].people[0].name.toLowerCase()} date={recipeParent.last_edited_time} />
                                     <div className='block lg:hidden mx-auto md:mx-0 relative mb-10 right-0 w-56 md:w-64'>
                                         <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
                                         <img src={recipeParent.properties.Image.files[0].file.url} />
@@ -41,7 +45,7 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                         </div>
 
 
-                        <div className='row-span-3 mask-alpha scrollbar-custom flex flex-col gap-12 overflow-y-auto lg:overflow-y-auto mb-10 2xl:mr-12'>
+                        <div className='row-span-3 mask-alpha scrollbar-custom flex flex-col gap-12 overflow-y-auto lg:overflow-y-auto pb-10 2xl:mr-12'>
                             <ol className='text-left pb-52 md:w-4/5 list-decimal list-inside text-white/70 font-body gap-4 2xl:gap-8 flex flex-col font-light 2xl:text-xl'>
                                 {recipe.map(item => {
                                     return item.numbered_list_item &&

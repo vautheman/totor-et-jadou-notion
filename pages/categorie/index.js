@@ -5,7 +5,7 @@ import { Client } from "@notionhq/client";
 import Link from "next/link";
 import Card from "@/components/Card";
 
-export default function Recipe({ recipes }) {
+export default function Recipe({ recipes, categorie }) {
 
     return (
         <>
@@ -22,17 +22,19 @@ export default function Recipe({ recipes }) {
                 <div className='px-4 xl:px-0 container mx-auto'>
                     <div className="my-24 flex flex-col gap-5">
                         <div className='flex flex-col md:flex-row gap-8 justify-between md:items-center'>
-                            <h2 className="text-4xl font-title text-white">Nos recettes culinaires</h2>
+                            <h2 className="text-4xl font-title text-white first-letter:capitalize">{categorie}</h2>
                             <div>
-                                
+
                             </div>
                         </div>
                         <hr className='opacity-5 mb-10 bg-white h-1 rounded-full' />
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
                             {recipes.map(recipe => {
-                                return (
-                                    <Card key={recipe.id} recipe={recipe} />
-                                )
+                                if (recipe.properties['Type de plat'].select.name == categorie) {
+                                    return (
+                                        <Card key={recipe.id} recipe={recipe} />
+                                    )
+                                }
                             })}
                         </div>
                     </div>
@@ -42,7 +44,7 @@ export default function Recipe({ recipes }) {
     )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
 
     const notion = new Client({
         auth: process.env.NOTION_API_KEY
@@ -63,12 +65,14 @@ export async function getServerSideProps() {
             "status": {
                 "equals": "Publié"
             }
+
         }
     })
 
     return {
         props: {
             recipes: recipes.results,
+            categorie: context.query.categorie
         }
     }
 }
