@@ -77,7 +77,7 @@ export default function Nav(props) {
 
                 </div>
                 {search &&
-                    <div className='w-full max-h-max absolute grid gap-2 grid-cols-1 z-10 bg-[#161E2F] text-white rounded-md mt-2 p-2'>
+                    <div className='w-full max-h-max absolute grid gap-2 grid-cols-1 z-20 bg-[#161E2F] text-white rounded-md mt-2 p-2'>
                         {search.slice(0, 6).map(recipe => {
                             return (
                                 <Link key={recipe.id} href={`/recipe/${recipe.id}`} className='flex flex-row justify-between h-16 items-center gap-4 hover:bg-white/10 rounded-md p-3 transition-all'>
