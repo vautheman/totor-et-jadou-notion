@@ -215,11 +215,6 @@ a.active * {
     display: block;
 }
 
-.tasks-list-desc {
-    font-weight: bold;
-    color: #8a9a9b;
-}
-
 .tasks-list-cb:checked ~ .tasks-list-desc {
     color: #FDBD84;
     text-decoration: line-through;

@@ -20,7 +20,7 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                 </Head>
 
                 <div className='px-4 xl:px-0 grid lg:grid-cols-3 container mx-auto gap-16'>
-                    <div className='col-span-2 relative lg:h-screen grid lg:grid-rows-6 text-center md:text-left'>
+                    <div className='col-span-2 relative lg:h-screen grid lg:grid-rows-6 gap-5 text-center md:text-left'>
                         <Nav recipe={recipes} />
                         <div className='relative row-span-2'>
                             <div className='hidden lg:block absolute mb-10 right-0 lg:translate-x-1/2 2xl:translate-x-1/3 w-56 2xl:w-72'>
@@ -29,7 +29,7 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                             </div>
 
                             <div className='lg:w-4/5 h-full flex flex-col justify-between'>
-                                <div className='flex flex-col gap-4'>
+                                <div className='flex flex-col gap-4 mb-5'>
                                     <div>
                                         <span className="font-body font-medium text-[#FDBD84] text-sm uppercase tracking-widest">{recipeParent.properties && recipeParent.properties['Type de plat'].select.name}</span>
                                         <h1 className="font-title text-white text-4xl md:text-5xl md:leading-[4rem] 2xl:text-6xl 2xl:leading-[4.5rem]">{recipeParent.properties && recipeParent.properties.Nom.title[0].plain_text}</h1>
@@ -61,15 +61,16 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                                 <div className='flex flex-col gap-2 2xl:text-lg'>
                                     <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-black/50"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
                                     <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-black/50"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
+                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-user-line text-black/50"></i>Pour 2 pers.</span>
                                 </div>
                                 <h3 className='font-title text-2xl 2xl:text-3xl'>Ingrédients</h3>
                                 <fieldset className="tasks-list">
                                     {recipe.map((item, index) => {
                                         return item.to_do && (
-                                            <label key={item.id} className="tasks-list-item py-2">
+                                            <label key={item.id} className="tasks-list-item py-2 font-body ">
                                                 <input type="checkbox" name={`task_${index}`} value="1" className="tasks-list-cb" />
                                                 <span className="tasks-list-mark"></span>
-                                                <span className="tasks-list-desc">{item.to_do.rich_text[0].plain_text}</span>
+                                                <span className="tasks-list-desc font-light">{item.to_do.rich_text[0].plain_text}</span>
                                             </label>
                                         )
                                     })}
