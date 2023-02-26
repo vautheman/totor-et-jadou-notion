@@ -61,7 +61,7 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                                 <div className='flex flex-col gap-2 2xl:text-lg'>
                                     <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-black/50"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
                                     <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-black/50"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
-                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-user-line text-black/50"></i>Pour 2 pers.</span>
+                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-user-line text-black/50"></i>Pour {recipeParent.properties["Quantité par personne"].number} pers.</span>
                                 </div>
                                 <h3 className='font-title text-2xl 2xl:text-3xl'>Ingrédients</h3>
                                 <fieldset className="tasks-list">
@@ -104,11 +104,12 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                 <AnimatePresence>
                     {open && (
                         <>
-                            <motion.div initial={{ height: 0 }} animate={{ height: "83%" }} exit={{ height: 0, transition: { duration: 0.3 } }} className='block lg:hidden fixed bg-white bottom-0 w-full rounded-t-3xl scrollbar-custom overflow-y-auto'>
+                            <motion.div initial={{ height: 0 }} animate={{ height: "83%" }} exit={{ height: 0, transition: { duration: 0.3 } }} className='block lg:hidden fixed bg-white bottom-0 w-full rounded-t-3xl pb-10 scrollbar-custom overflow-y-auto'>
                                 <div className='flex flex-col gap-8 py-20 p-16 2xl:px-24'>
                                     <div className='flex flex-col gap-2 2xl:text-lg'>
                                         <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-black/50"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
                                         <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-black/50"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
+                                        <span className='align-middle flex gap-2 font-body font-light'><i className="ri-user-line text-black/50"></i>Pour {recipeParent.properties["Quantité par personne"].number} pers.</span>
                                     </div>
                                     <h3 className='font-title text-2xl 2xl:text-3xl'>Ingrédients</h3>
                                     <fieldset className="tasks-list">
