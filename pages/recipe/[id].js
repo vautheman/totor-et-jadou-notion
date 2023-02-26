@@ -2,7 +2,7 @@ import Nav from '@/components/Nav';
 import { Client } from '@notionhq/client'
 import Head from 'next/head'
 import Layout from '@/components/Layout';
-import { motion, useMotionValue, useSpring, useCycle, AnimatePresence } from 'framer-motion'
+import { motion, useCycle, AnimatePresence } from 'framer-motion'
 import Redacteur from '@/components/Redacteur';
 
 export default function Recipe({ recipe, recipeParent, recipes }) {
@@ -19,72 +19,73 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                     <link rel="icon" href="/img/logo-192.jpg" />
                 </Head>
 
-                <div className='px-4 xl:px-0 grid lg:grid-cols-3 container mx-auto gap-16'>
-                    <div className='col-span-2 relative lg:h-screen grid lg:grid-rows-6 gap-5 text-center md:text-left'>
-                        <Nav recipe={recipes} />
-                        <div className='relative row-span-2'>
-                            <div className='hidden lg:block absolute mb-10 right-0 lg:translate-x-1/2 2xl:translate-x-1/3 w-56 2xl:w-72'>
-                                <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
-                                <img src={recipeParent.properties.Image.files[0].file.url} />
-                            </div>
-
-                            <div className='lg:w-4/5 h-full flex flex-col justify-between'>
-                                <div className='flex flex-col gap-4 mb-5'>
-                                    <div>
-                                        <span className="font-body font-medium text-[#FDBD84] text-sm uppercase tracking-widest">{recipeParent.properties && recipeParent.properties['Type de plat'].select.name}</span>
-                                        <h1 className="font-title text-white text-4xl md:text-5xl md:leading-[4rem] 2xl:text-6xl 2xl:leading-[4.5rem]">{recipeParent.properties && recipeParent.properties.Nom.title[0].plain_text}</h1>
-                                    </div>
-                                    <Redacteur name={recipeParent.properties["Rédacteur"].people[0].name.toLowerCase()} date={recipeParent.last_edited_time} />
-                                    <div className='block lg:hidden mx-auto md:mx-0 relative mb-10 right-0 w-56 md:w-64'>
-                                        <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
-                                        <img src={recipeParent.properties.Image.files[0].file.url} />
-                                    </div>
-                                </div>
-                                <h3 className='font-title text-2xl 2xl:text-3xl text-white mb-8'>Étapes à suivre</h3>
-                            </div>
+                <div className='px-4 xl:px-0 grid lg:grid-cols-5 xl:grid-cols-3 container mx-auto gap-16'>
+                    <div className='lg:col-span-3 xl:col-span-2 w-full relative'>
+                        <div className='hidden lg:block absolute mb-10 right-0 top-32 lg:translate-x-1/2 2xl:translate-x-1/3 w-56 2xl:w-72 z-20'>
+                            <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
+                            <img src={recipeParent.properties.Image.files[0].file.url} />
                         </div>
+                        <Nav recipe={recipes} />
 
-
-                        <div className='row-span-3 mask-alpha scrollbar-custom flex flex-col gap-12 overflow-y-auto lg:overflow-y-auto pb-10 2xl:mr-12'>
-                            <ol className='text-left pb-52 md:w-4/5 list-decimal list-inside text-white/70 font-body gap-4 2xl:gap-8 flex flex-col font-light 2xl:text-xl'>
-                                {recipe.map(item => {
-                                    return item.numbered_list_item &&
-                                        <li key={item.id}>{item.numbered_list_item.rich_text[0].plain_text}</li>
-                                })}
-                            </ol>
+                        <div className='lg:w-4/5'>
+                            <div className='flex flex-col gap-8 mb-20'>
+                                <div>
+                                    <span className="font-body font-medium text-[#FDBD84] text-sm uppercase tracking-widest">{recipeParent.properties && recipeParent.properties['Type de plat'].select.name}</span>
+                                    <h1 className="font-title text-white text-4xl md:text-5xl md:leading-[4rem] 2xl:text-6xl 2xl:leading-[4.5rem]">{recipeParent.properties && recipeParent.properties.Nom.title[0].plain_text}</h1>
+                                </div>
+                                <Redacteur name={recipeParent.properties["Rédacteur"].people[0].name.toLowerCase()} date={recipeParent.last_edited_time} />
+                                <div className='block lg:hidden mx-auto md:mx-0 relative right-0 w-56 md:w-64'>
+                                    <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
+                                    <img src={recipeParent.properties.Image.files[0].file.url} />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 className='font-title text-2xl 2xl:text-3xl text-white mb-8'>Étapes à suivre</h3>
+                                <ol className='text-left pb-52 list-decimal list-inside text-white/70 font-body gap-4 2xl:gap-8 flex flex-col font-light 2xl:text-xl'>
+                                    {recipe.map(item => {
+                                        return item.numbered_list_item &&
+                                            <li key={item.id}>{item.numbered_list_item.rich_text[0].plain_text}</li>
+                                    })}
+                                </ol>
+                            </div>
                         </div>
                     </div>
-
-                    <div className='hidden lg:grid h-screen items-center py-3'>
-                        <div className='bg-white rounded-3xl h-full p-3 flex flex-col justify-between'>
-                            <div className='flex flex-col gap-8 py-20 p-16 2xl:px-24'>
-                                <div className='flex flex-col gap-2 2xl:text-lg'>
-                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-black/50"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
-                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-black/50"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
-                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-user-line text-black/50"></i>Pour {recipeParent.properties["Quantité par personne"].number} pers.</span>
+                    <div className='z-10 lg:col-span-2 xl:col-span-1 hidden lg:block'>
+                        <div className='sticky top-0 h-screen py-3'>
+                            <div className='bg-white h-full rounded-3xl flex flex-col justify-between relative pt-5'>
+                                {/* <div className='hidden lg:block absolute top-20 -left-10 2xl:-translate-x-3/4 w-56 2xl:w-72'>
+                                    <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
+                                    <img src={recipeParent.properties.Image.files[0].file.url} />
+                                </div> */}
+                                <div className='overflow-y-auto scrollbar-custom py-14 px-16 flex flex-col gap-8'>
+                                    <div className='flex flex-col gap-2 2xl:text-lg'>
+                                        <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-black/50"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
+                                        <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-black/50"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
+                                        <span className='align-middle flex gap-2 font-body font-light'><i className="ri-user-line text-black/50"></i>Pour {recipeParent.properties["Quantité par personne"].number} pers.</span>
+                                    </div>
+                                    <h3 className='font-title text-2xl 2xl:text-3xl'>Ingrédients</h3>
+                                    <fieldset>
+                                        {recipe.map((item, index) => {
+                                            return item.to_do && (
+                                                <label key={item.id} className="tasks-list-item flex items-center leading-6 cursor-pointer py-2 font-body ">
+                                                    <input type="checkbox" name={`task_${index}`} value="1" className="tasks-list-cb hidden" />
+                                                    <span className="tasks-list-mark relative mr-3 w-5 h-5 border border-solid border-[#c4cbd2] aspect-square rounded-full"></span>
+                                                    <span className="tasks-list-desc font-light">{item.to_do.rich_text[0].plain_text}</span>
+                                                </label>
+                                            )
+                                        })}
+                                    </fieldset>
                                 </div>
-                                <h3 className='font-title text-2xl 2xl:text-3xl'>Ingrédients</h3>
-                                <fieldset className="tasks-list">
-                                    {recipe.map((item, index) => {
-                                        return item.to_do && (
-                                            <label key={item.id} className="tasks-list-item py-2 font-body ">
-                                                <input type="checkbox" name={`task_${index}`} value="1" className="tasks-list-cb" />
-                                                <span className="tasks-list-mark"></span>
-                                                <span className="tasks-list-desc font-light">{item.to_do.rich_text[0].plain_text}</span>
-                                            </label>
-                                        )
-                                    })}
-
-                                </fieldset>
-                            </div>
-
-                            <div className='bg-[#A2A8BA] w-full h-20 bottom-0 rounded-full shadow-md'>
-                                <ul className='flex flex-row flex-nowrap text-white w-full gap-5 p-8 justify-around h-full items-center'>
-                                    <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-shopping-bag-3-line ri-2x"></i></li>
-                                    <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-message-3-line ri-2x"></i></li>
-                                    <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-image-line ri-2x"></i></li>
-                                    <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-share-line ri-2x"></i></li>
-                                </ul>
+                                <div className='px-3 pb-3'>
+                                    <div className='bg-[#A2A8BA] w-full h-20 bottom-0 rounded-3xl shadow-md'>
+                                        <ul className='flex flex-row flex-nowrap text-white w-full gap-5 p-8 justify-around h-full items-center'>
+                                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-shopping-bag-3-line ri-2x"></i></li>
+                                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-message-3-line ri-2x"></i></li>
+                                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-image-line ri-2x"></i></li>
+                                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-share-line ri-2x"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,10 +116,10 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                                     <fieldset className="tasks-list">
                                         {recipe.map((item, index) => {
                                             return item.to_do && (
-                                                <label key={item.id} className="tasks-list-item py-2">
-                                                    <input type="checkbox" name={`task_${index}`} value="1" className="tasks-list-cb" />
-                                                    <span className="tasks-list-mark"></span>
-                                                    <span className="tasks-list-desc">{item.to_do.rich_text[0].plain_text}</span>
+                                                <label key={item.id} className="tasks-list-item flex items-center leading-6 cursor-pointer py-2 font-body ">
+                                                    <input type="checkbox" name={`task_${index}`} value="1" className="tasks-list-cb hidden" />
+                                                    <span className="tasks-list-mark relative mr-3 w-5 h-5 border border-solid border-[#c4cbd2] aspect-square rounded-full"></span>
+                                                    <span className="tasks-list-desc font-light">{item.to_do.rich_text[0].plain_text}</span>
                                                 </label>
                                             )
                                         })}

@@ -10,7 +10,7 @@ import { paginate } from "@/components/paginate";
 
 export default function Recipe({ recipes }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 4;
+  const pageSize = 16;
 
   const onPageChange = (page) => {
     setCurrentPage(page);

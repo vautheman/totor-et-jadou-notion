@@ -4,7 +4,7 @@ import logo from '../public/img/logo-header.png'
 import Link from 'next/link'
 import { useState } from 'react'
 import Menu from './Menu'
-import { motion, useMotionValue, useSpring, useCycle, AnimatePresence } from 'framer-motion'
+import { motion, useCycle, AnimatePresence } from 'framer-motion'
 
 export default function Nav(props) {
     const recipes = props.recipe;
@@ -19,12 +19,12 @@ export default function Nav(props) {
             if (Name.toLowerCase().includes(value)) {
                 tabRecipe.push(recipe)
             }
-            console.log(value)
+            //console.log(value)
         })
 
-        console.log(tabRecipe)
+        //console.log(tabRecipe)
         setSearch(tabRecipe)
-        console.log(search)
+        //console.log(search)
 
     };
 
@@ -59,7 +59,7 @@ export default function Nav(props) {
 
 
     return (
-        <header className="px-4 xl:px-0 row-span-1 w-100 container mx-auto flex justify-between h-min py-5 items-center mb-14 gap-10">
+        <header className="px-4 xl:px-0 row-span-1 w-100 container mx-auto flex justify-between h-min py-5 items-center mb-14 gap-4 xl:gap-10">
             <Menu />
             <Link className='md:flex-1' href={'/'}>
                 <div className='flex gap-2 sm:gap-3 flex-nowrap items-center'>

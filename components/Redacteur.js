@@ -7,12 +7,12 @@ export default function Redacteur({ name, date }) {
         if (name == "victor autheman") {
             return (
                 <>
-                    <img className="w-8 rounded-full" src="/img/totor.png" alt="" /> <p className="font-body">Publié par Totor</p>
+                    <img className="w-6 rounded-full" src="/img/totor.png" alt="" /> <p className="font-body">Publié par Totor</p>
                 </>
             )
         } else return (
             <>
-                <img className="w-8 rounded-full" src="/img/jadou.png" alt="" /> <p className="font-body">Publié par Jadou</p>
+                <img className="w-6 rounded-full" src="/img/jadou.png" alt="" /> <p className="font-body">Publié par Jadou</p>
             </>
         )
     }

@@ -22,10 +22,10 @@ export default function Home({ databaseRecipes, recipes, legumes }) {
       catTab.push(categorie.name);
     })
 
-    const RecipeByCat = catTab.sort().reverse().map(categorie => {
+    const RecipeByCat = catTab.sort().reverse().map((categorie, index) => {
       return (
         <>
-          <div className="my-24 flex flex-col gap-5">
+          <div key={index} className="my-24 flex flex-col gap-5">
             <div className='flex flex-col md:flex-row gap-8 justify-between md:items-center'>
               <h2 className="text-4xl font-title text-white">{categorie}</h2>
               <Link href={{ pathname: '/categorie/', query: { categorie: categorie } }} className="hover:scale-110 transition-all">

@@ -66,7 +66,7 @@ export default function Menu() {
             <AnimatePresence>
                 {open && (
                     <>
-                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {duration: 0.1, delay: 0} }} exit={{ opacity: 0 }} onClick={cycleOpen} className="hidden md:block fixed top-0 left-0 h-screen w-screen backdrop-blur-lg bg-[#161E2F]/50 z-10">
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {duration: 0.1, delay: 0} }} exit={{ opacity: 0 }} onClick={cycleOpen} className="hidden md:block fixed top-0 left-0 h-screen w-screen backdrop-blur-lg bg-[#161E2F]/50 z-30">
                             <motion.div className="absolute opacity-80 bg-[#161E2F] w-20 h-20 rounded-full flex items-center justify-center -left-5 -top-5" style={{ translateX: curseurXSpring, translateY: curseurYSpring, }}>
                                 <span className="h-1 w-1/2 bg-white block rotate-45 absolute"></span>
                                 <span className="h-1 w-1/2 bg-white block -rotate-45 absolute"></span>
@@ -89,7 +89,7 @@ export default function Menu() {
                                     <motion.p variants={itemVariants} className="font-body text-2xl text-white font-bold">Totor & Jadou</motion.p>
                                 </motion.div>
                                 <motion.div initial="closed" animate="open" variants={sideVariants} exit={{ opacity: 0 }} className="grid gap-16">
-                                    <Link href={'/'} className={currentRoute === "/" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all opacity-0">Cuisine</motion.span></Link>
+                                    <Link href={'/recipe'} className={currentRoute === "/recipe" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all opacity-0">Cuisine</motion.span></Link>
                                     <Link href={'/maison'} className={currentRoute === "/maison" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all opacity-0">Maison</motion.span></Link>
                                     <Link href={'/blog'} className={currentRoute === "/blog" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all opacity-0">Blog</motion.span></Link>
                                 </motion.div>
@@ -104,7 +104,7 @@ export default function Menu() {
                                     <motion.p variants={itemVariants} className="font-body text-2xl text-white font-bold">Totor & Jadou</motion.p>
                                 </motion.div>
                                 <motion.div initial="closed" animate="open" variants={sideVariants} exit={{ opacity: 0 }} className="grid gap-10">
-                                    <Link href={'/'} className={currentRoute === "/" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-6xl font-bold text-white/50 hover:text-white transition-all">Cuisine</motion.span></Link>
+                                    <Link href={'/recipe'} className={currentRoute === "/recipe" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-6xl font-bold text-white/50 hover:text-white transition-all">Cuisine</motion.span></Link>
                                     <Link href={'/maison'} className={currentRoute === "/maison" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-6xl font-bold text-white/50 hover:text-white transition-all">Maison</motion.span></Link>
                                     <Link href={'/blog'} className={currentRoute === "/blog" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-6xl font-bold text-white/50 hover:text-white transition-all">Blog</motion.span></Link>
                                 </motion.div>
