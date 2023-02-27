@@ -7,7 +7,7 @@ export default function Plat(props) {
             {props.data.map(recipe => {
                 if (recipe.properties['Type de plat'].multi_select[0].name == "Plat principal") {
                     return (
-                        <Link href={`/recipe/${recipe.id}`} className="hover:scale-105 transition-all w-96">
+                        <Link key={recipe.id} href={`/recipe/${recipe.id}`} className="hover:scale-105 transition-all w-96">
                             <Tilt className='bg-gradient-to-t from-[#D9D9D9]/10 to-transparent rounded-xl p-8 2xl:p-14 flex flex-col h-full justify-between' style={{}}>
                                 <div className='relative mb-10 m-2 parallax-tilt'>
                                     {/* <img className='blur-xl absolute top-0 -z-10' src={recipe.properties.Image.files[0].file.url} />
