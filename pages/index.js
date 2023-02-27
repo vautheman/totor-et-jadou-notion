@@ -118,7 +118,7 @@ export default function Home({ databaseRecipes, recipes, legumes }) {
                   <Tilt className='bg-gradient-to-l from-[#D9D9D9]/10 to-transparent rounded-xl py-6 md:py-0 px-10 h-full grid grid-cols-3 items-center gap-8' style={{}}>
                     <div className='relative parallax-tilt flex justify-center'>
                       <div className='w-3/4 aspect-square bg-white/20 rounded-full flex items-center justify-center'>
-                        <i class="ri-arrow-right-line ri-3x text-white"></i>
+                        <i className="ri-arrow-right-line ri-3x text-white"></i>
                       </div>
                     </div>
                     <div className='flex flex-col gap-3 col-span-2 parallax-tilt'>

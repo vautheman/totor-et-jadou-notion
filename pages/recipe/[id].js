@@ -6,28 +6,21 @@ import { motion, useCycle, AnimatePresence } from 'framer-motion'
 import Redacteur from '@/components/Redacteur';
 import { useEffect, useState } from 'react';
 import Commentaires from '@/components/recipe_menu/Commentaires';
+import axios from 'axios';
 
 export default function Recipe({ recipe, recipeParent, recipes, commentaires }) {
 
     const [open, cycleOpen] = useCycle(false, true);
     const [onglet, setOnglet] = useState("ingredient");
 
-    const [viewOnglet, setViewOnglet] = useState();
-
+    /* Get IP */
+    const [ip, setIP] = useState('');
+    const getIP = async () => {
+        const res = await axios.get('https://geolocation-db.com/json/')
+        setIP(res.data.IPv4)
+    }
     useEffect(() => {
-        switch (onglet) {
-            case "ingredient":
-                return setViewOnglet(
-                    <>
-
-                    </>
-                );
-                break;
-            case "commentaire":
-                return setViewOnglet(<>test</>);
-                break;
-            default: viewOnglet();
-        }
+        getIP()
     }, [])
 
     return (
@@ -102,16 +95,16 @@ export default function Recipe({ recipe, recipeParent, recipes, commentaires }) 
                                     )}
 
                                     {onglet == "commentaire" && (
-                                        <Commentaires commentaires={commentaires} recipeId={recipeParent.id} />  
+                                        <Commentaires commentaires={commentaires} recipeId={recipeParent.id} ip={ip} />
                                     )}
                                 </div>
                                 <div className='px-3 pb-3'>
                                     <div className='bg-[#A2A8BA] w-full h-20 bottom-0 rounded-3xl shadow-md'>
                                         <ul className='flex flex-row flex-nowrap text-white w-full gap-5 p-8 justify-around h-full items-center'>
-                                            <li onClick={() => setOnglet("ingredient")} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-shopping-bag-3-line ri-2x"></i></li>
-                                            <li onClick={() => setOnglet("commentaire")} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-message-3-line ri-2x"></i></li>
-                                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-image-line ri-2x"></i></li>
-                                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-share-line ri-2x"></i></li>
+                                            <li onClick={() => setOnglet("ingredient")} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-shopping-bag-3-line ri-2x"></i></li>
+                                            <li onClick={() => setOnglet("commentaire")} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-message-3-line ri-2x"></i></li>
+                                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-image-line ri-2x"></i></li>
+                                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-share-line ri-2x"></i></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -123,10 +116,10 @@ export default function Recipe({ recipe, recipeParent, recipes, commentaires }) 
                 <div className='w-full p-2 fixed bottom-0 z-10 lg:hidden'>
                     <div className='bg-[#A2A8BA] h-20 rounded-3xl shadow-md w-full md:w-1/2 mx-auto'>
                         <ul className='flex flex-row flex-nowrap text-white w-full gap-5 p-8 justify-around h-full items-center'>
-                            <li onClick={cycleOpen} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-shopping-bag-3-line ri-2x"></i></li>
-                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-message-3-line ri-2x"></i></li>
-                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-image-line ri-2x"></i></li>
-                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i class="ri-share-line ri-2x"></i></li>
+                            <li onClick={cycleOpen} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-shopping-bag-3-line ri-2x"></i></li>
+                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-message-3-line ri-2x"></i></li>
+                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-image-line ri-2x"></i></li>
+                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-share-line ri-2x"></i></li>
                         </ul>
                     </div>
                 </div>
@@ -217,7 +210,7 @@ export async function getServerSideProps({ params }) {
             recipe: recipe.results,
             recipeParent,
             recipes: recipes.results,
-            commentaires: commentaires.results
+            commentaires: commentaires.results,
         }
     }
 }

@@ -75,7 +75,7 @@ export default function InitialTransition() {
                     </pattern>
                     <text
                         className="text-4xl font-bold font-body animate__animated animate__fadeIn"
-                        text-anchor="middle"
+                        textAnchor="middle"
                         x="50%"
                         y="50%"
                         style={{ fill: "url(#pattern)" }}
