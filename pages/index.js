@@ -70,7 +70,7 @@ export default function Home({ databaseRecipes, recipes, legumes }) {
         <main className="px-4 xl:px-0 container mx-auto mb-10 2xl:mb-14">
           <Image src={"/img/bg-cacao.png"} layout="fill" objectFit="contain" objectPosition="right" className="-z-10 pointer-events-none hidden lg:block" />
           <div className="lg:w-2/3 flex flex-col gap-1">
-            <span className="font-body font-medium text-[#FDBD84] text-sm uppercase tracking-widest">ACCUEIL</span>
+            <span className="font-body font-medium text-[#FDBD84] text-sm uppercase tracking-widest">ACCUEIL test</span>
             <h1 className="font-title text-white text-4xl lg:text-5xl 2xl:text-6xl 2xl:leading-[5rem]">Un univers dédié aux recettes et astuces écologiques du quotidien. </h1>
           </div>
         </main>
