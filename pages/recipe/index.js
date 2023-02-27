@@ -5,7 +5,7 @@ import { Client } from "@notionhq/client";
 import Link from "next/link";
 import Card from "@/components/Card";
 import { useState } from "react";
-import Pagination from "@/components/pagination";
+import Pagination from "@/components/Pagination";
 import { paginate } from "@/components/paginate";
 
 export default function Recipe({ recipes }) {
