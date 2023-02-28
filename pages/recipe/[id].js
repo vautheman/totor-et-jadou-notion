@@ -7,6 +7,7 @@ import Redacteur from '@/components/Redacteur';
 import { useEffect, useState } from 'react';
 import Commentaires from '@/components/recipe_menu/Commentaires';
 import axios from 'axios';
+import Share from '@/components/recipe_menu/Share';
 
 export default function Recipe({ recipe, recipeParent, recipes, commentaires }) {
 
@@ -30,6 +31,10 @@ export default function Recipe({ recipe, recipeParent, recipes, commentaires }) 
                     <title>{recipeParent.properties && recipeParent.properties.Nom.title[0].plain_text}</title>
                     <meta name="description" content={recipeParent.properties.Description.rich_text[0].plain_text} />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <meta property="og:image" content={recipeParent.properties.Image.files[0].file.url} />
+                    <meta property="og:image:type" content="image/png" />
+                    <meta property="og:image:width" content="1024" />
+                    <meta property="og:image:height" content="1024" />
                     <link rel="icon" href="/img/logo-192.jpg" />
                 </Head>
 
@@ -71,32 +76,47 @@ export default function Recipe({ recipe, recipeParent, recipes, commentaires }) 
                                     <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
                                     <img src={recipeParent.properties.Image.files[0].file.url} />
                                 </div> */}
-                                <div className='overflow-y-auto h-full scrollbar-custom py-14 px-16 flex flex-col gap-8'>
-                                    {onglet == "ingredient" && (
-                                        <>
-                                            <div className='flex flex-col gap-2 2xl:text-lg'>
-                                                <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-black/50"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
-                                                <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-black/50"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
-                                                <span className='align-middle flex gap-2 font-body font-light'><i className="ri-user-line text-black/50"></i>Pour {recipeParent.properties["Quantité par personne"].number} pers.</span>
-                                            </div>
-                                            <h3 className='font-title text-2xl 2xl:text-3xl'>Ingrédients</h3>
-                                            <fieldset>
-                                                {recipe.map((item, index) => {
-                                                    return item.to_do && (
-                                                        <label key={item.id} className="tasks-list-item flex items-center leading-6 cursor-pointer py-2 font-body ">
-                                                            <input type="checkbox" name={`task_${index}`} value="1" className="tasks-list-cb hidden" />
-                                                            <span className="tasks-list-mark relative mr-3 w-5 h-5 border border-solid border-[#c4cbd2] aspect-square rounded-full"></span>
-                                                            <span className="tasks-list-desc font-light">{item.to_do.rich_text[0].plain_text}</span>
-                                                        </label>
-                                                    )
-                                                })}
-                                            </fieldset>
-                                        </>
-                                    )}
+                                <div className='overflow-y-auto h-full scrollbar-custom py-14 px-16'>
+                                    <AnimatePresence>
+                                        {onglet == "ingredient" && (
+                                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className=" flex flex-col gap-8">
+                                                <div className='flex flex-col gap-2 2xl:text-lg'>
+                                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-black/50"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
+                                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-black/50"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
+                                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-user-line text-black/50"></i>Pour {recipeParent.properties["Quantité par personne"].number} pers.</span>
+                                                </div>
+                                                <h3 className='font-title text-2xl 2xl:text-3xl'>Ingrédients</h3>
+                                                <fieldset>
+                                                    {recipe.map((item, index) => {
+                                                        return item.to_do && (
+                                                            <label key={item.id} className="tasks-list-item flex items-center leading-6 cursor-pointer py-2 font-body ">
+                                                                <input type="checkbox" name={`task_${index}`} value="1" className="tasks-list-cb hidden" />
+                                                                <span className="tasks-list-mark relative mr-3 w-5 h-5 border border-solid border-[#c4cbd2] aspect-square rounded-full"></span>
+                                                                <span className="tasks-list-desc font-light">{item.to_do.rich_text[0].plain_text}</span>
+                                                            </label>
+                                                        )
+                                                    })}
+                                                </fieldset>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
 
-                                    {onglet == "commentaire" && (
-                                        <Commentaires commentaires={commentaires} recipeId={recipeParent.id} ip={ip} />
-                                    )}
+                                    <AnimatePresence>
+
+                                        {onglet == "commentaire" && (
+                                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className=" flex flex-col gap-8 justify-between h-full">
+                                                <Commentaires commentaires={commentaires} recipeId={recipeParent.id} ip={ip} />
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+
+                                    <AnimatePresence>
+                                        {onglet == "share" && (
+                                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                                                <Share id={recipeParent.id} msg={recipeParent.properties.Nom.title[0].plain_text} />
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
                                 <div className='px-3 pb-3'>
                                     <div className='bg-[#A2A8BA] w-full h-20 bottom-0 rounded-3xl shadow-md'>
@@ -104,7 +124,7 @@ export default function Recipe({ recipe, recipeParent, recipes, commentaires }) 
                                             <li onClick={() => setOnglet("ingredient")} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-shopping-bag-3-line ri-2x"></i></li>
                                             <li onClick={() => setOnglet("commentaire")} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-message-3-line ri-2x"></i></li>
                                             <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-image-line ri-2x"></i></li>
-                                            <li className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-share-line ri-2x"></i></li>
+                                            <li onClick={() => setOnglet("share")} className='cursor-pointer w-full rounded-lg aspect-square hover:bg-white/50 flex items-center justify-center transition-all ease-in'><i className="ri-share-line ri-2x"></i></li>
                                         </ul>
                                     </div>
                                 </div>
