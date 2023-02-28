@@ -17,7 +17,7 @@ export default function Commentaires({ commentaires, recipeId, ip }) {
         const msg = event.target.commentaire.value;
 
         // Récupère via l'api next tout les commentaires existant
-        const res = await fetch("http://localhost:3000/api/getCommentaires", {
+        const res = await fetch("/api/getCommentaires", {
             method: "POST",
             body: {},
         })
@@ -36,7 +36,7 @@ export default function Commentaires({ commentaires, recipeId, ip }) {
         } else { // Sinon on poste le commentaire
             if (name && msg) {
                 if (IP == false) {
-                    const res = await fetch('http://localhost:3000/api/postCommentaire', {
+                    const res = await fetch('/api/postCommentaire', {
                         method: 'POST',
                         body: JSON.stringify({ name, msg, recipeId, ip }),
                     });
