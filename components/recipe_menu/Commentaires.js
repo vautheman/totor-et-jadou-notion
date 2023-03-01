@@ -19,7 +19,7 @@ export default function Commentaires({ commentaires, recipeId, ip }) {
         // Récupère via l'api next tout les commentaires existant
         const res = await fetch("/api/getCommentaires", {
             method: "POST",
-            body: {},
+            body: JSON.stringify({ recipeId }),
         })
         const data = await res.json();
 

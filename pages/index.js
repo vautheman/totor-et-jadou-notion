@@ -9,6 +9,7 @@ import Layout from '@/components/Layout'
 import Image from "next/image";
 import LegumeSaison from '@/components/LegumeSaison'
 import { useEffect, useState } from 'react'
+import { AnimationOnScroll } from 'react-animation-on-scroll'
 
 export default function Home({ databaseRecipes, recipes, legumes }) {
 

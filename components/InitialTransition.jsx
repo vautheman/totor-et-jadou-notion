@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import ReactWOW from 'react-wow'
 import 'animate.css'
+import { useEffect } from 'react';
 
 const blackBox = {
     initial: {
