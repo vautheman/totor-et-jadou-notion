@@ -140,7 +140,8 @@ a.active * {
     text-decoration: line-through;
 }
 
-@keyframes fade {
+
+/* @keyframes fade {
     from {
         opacity: 0;
         transform: scale(0.98);
@@ -151,6 +152,21 @@ a.active * {
     }
     to {
         opacity: .5;
+        transform: scale(0.98) translate(0);
+    }
+} */
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1) translate(0);
+    }
+    to {
+        opacity: 1;
         transform: scale(0.98) translate(0);
     }
 }

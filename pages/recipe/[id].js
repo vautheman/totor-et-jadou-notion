@@ -51,10 +51,10 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                                     <fieldset className="tasks-list grid grid-cols-2 gap-x-10 text-[#A2A8BA]">
                                         {recipe.map((item, index) => {
                                             return item.to_do && (
-                                                <label key={item.id} className="tasks-list-item flex items-center leading-6 cursor-pointer py-2 font-body ">
+                                                <label key={item.id} className="tasks-list-item flex items-center leading-6 cursor-pointer py-2 font-body">
                                                     <input type="checkbox" name={`task_${index}`} value="1" className="tasks-list-cb hidden" />
                                                     <span className="tasks-list-mark relative mr-3 w-5 h-5 border border-solid border-[#c4cbd2] aspect-square rounded-full"></span>
-                                                    <span className="tasks-list-desc font-light">{item.to_do.rich_text[0].plain_text}</span>
+                                                    <span className="tasks-list-desc font-semibold">{item.to_do.rich_text[0].plain_text}</span>
                                                 </label>
                                             )
                                         })}
@@ -65,7 +65,7 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                             
                             <div>
                                 <h3 className='font-title text-2xl 2xl:text-3xl text-white mb-8'>Étapes à suivre</h3>
-                                <ol className='text-left pb-52 list-decimal list-inside text-white/70 font-body gap-8 2xl:gap-8 flex flex-col font-light text-lg'>
+                                <ol className='text-left pb-52 list-decimal list-inside text-white/70 font-body gap-8 2xl:gap-8 flex flex-col font-medium text-lg'>
                                     {recipe.map(item => {
                                         return item.numbered_list_item &&
                                             <li className='items-ordered' key={item.id}>{item.numbered_list_item.rich_text[0].plain_text}</li>
