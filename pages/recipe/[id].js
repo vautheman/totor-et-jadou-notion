@@ -46,7 +46,7 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                                     <span className='align-middle flex gap-2 font-body font-light'><i className="ri-user-line text-[#FDBD84]"></i>Pour {recipeParent.properties["Quantité par personne"].number} pers.</span>
                                 </div>
 
-                                <div className='relative bg-gradient-to-l from-[#D9D9D9]/10 to-transparent rounded-xl p-8 pl-0 flex flex-col h-full justify-between gap-5 shadow-2xl shadow-black/5 after:content-[""] after:w-full after:h-full after:border-white/20 after:border-2 after:absolute after:top-0 after:left-0 after:rounded-xl card'>
+                                <div className='relative bg-gradient-to-l from-[#D9D9D9]/10 to-transparent rounded-xl p-8 pl-0 flex flex-col h-full justify-between gap-5 shadow-2xl shadow-black/5 after:content-[""] after:w-full after:h-full after:border-white/20 after:border-2 after:absolute after:top-0 after:left-0 after:rounded-xl after:pointer-events-none card'>
                                     <h3 className='font-title text-2xl 2xl:text-3xl text-white'>Ingrédients</h3>
                                     <fieldset className="tasks-list grid grid-cols-2 gap-x-10 text-[#A2A8BA]">
                                         {recipe.map((item, index) => {
