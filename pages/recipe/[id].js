@@ -38,11 +38,12 @@ export default function Recipe({ recipe, recipeParent, recipes }) {
                                 <div className='block lg:hidden mx-auto md:mx-0 relative right-0 w-56 md:w-64'>
                                     <img className='blur-2xl absolute top-0 -z-10 scale-110' src={recipeParent.properties.Image.files[0].file.url} />
                                     <img src={recipeParent.properties.Image.files[0].file.url} />
+                                    <span className='w-full h-full bg-black absolute top-6 left-6 blur-md -z-20 rounded-full'></span>
                                 </div>
 
                                 <div className='flex flex-row flex-wrap gap-10 text-white 2xl:text-lg'>
-                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-[#FDBD84]"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
-                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-[#FDBD84]"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
+                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-medal-line text-[#FDBD84]"></i>{recipeParent.properties.Difficulté.multi_select[0].name}</span>
+                                    <span className='align-middle flex gap-2 font-body font-light'><i className="ri-timer-line text-[#FDBD84]"></i>{recipeParent.properties["Temps (en min)"].number} minutes</span>
                                     <span className='align-middle flex gap-2 font-body font-light'><i className="ri-user-line text-[#FDBD84]"></i>Pour {recipeParent.properties["Quantité par personne"].number} pers.</span>
                                 </div>
 

@@ -59,9 +59,9 @@ export default function Menu() {
     return (
         <>
             <div className="flex flex-col gap-2 scale-90 group cursor-pointer" onClick={cycleOpen}>
-                <span className="block h-1 w-8 bg-white group-hover:w-8 transition-all"></span>
-                <span className="block h-1 w-5 bg-white group-hover:w-8 transition-all"></span>
-                <span className="block h-1 w-6 bg-white group-hover:w-8 transition-all"></span>
+                <span className="block h-[0.15rem] w-7 bg-white group-hover:w-8 transition-all"></span>
+                <span className="block h-[0.15rem] w-4 bg-white group-hover:w-8 transition-all"></span>
+                <span className="block h-[0.15rem] w-5 bg-white group-hover:w-8 transition-all"></span>
             </div>
             <AnimatePresence>
                 {open && (
@@ -73,13 +73,13 @@ export default function Menu() {
                             </motion.div>
                         </motion.div>
                         <motion.div initial={{ width: 0 }} animate={{ width: "50%" }} exit={{ width: 0, transition: { delay: 0.3, duration: 0.3 } }} className="hidden md:block fixed bg-[#161E2F] w-1/2 h-screen top-0 left-0 z-10 no-parallax">
-                            <svg className="absolute right-0 translate-x-full" width="66" height="982" viewBox="0 0 66 982" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="absolute right-0 translate-x-full w-auto h-full" width="66" height="982" viewBox="0 0 66 982" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M41.3194 -1.13352e-06L48.2274 81.8333C54.8772 163.667 69.0808 327.333 65.4008 491C61.979 654.667 41.3193 818.333 30.9895 900.167L20.6597 982L-2.7063e-06 982L6.98141e-07 900.167C4.10258e-06 818.333 1.09115e-05 654.667 1.77203e-05 491C2.45292e-05 327.333 3.13381e-05 163.667 3.47425e-05 81.8333L3.8147e-05 -3.03122e-06L41.3194 -1.13352e-06Z" fill="#161E2F" />
                             </svg>
-                            <svg className="absolute right-0 translate-x-full" width="107" height="982" viewBox="0 0 107 982" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="absolute right-0 translate-x-full w-auto h-full" width="107" height="982" viewBox="0 0 107 982" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M61.7946 -2.07618e-06L72.0937 81.8333C82.3928 163.667 102.991 327.333 106.403 491C110.072 654.667 95.9103 818.333 89.2803 900.167L82.3927 982L-2.7063e-06 982L6.98141e-07 900.167C4.10258e-06 818.333 1.09115e-05 654.667 1.77203e-05 491C2.45292e-05 327.333 3.13381e-05 163.667 3.47425e-05 81.8333L3.8147e-05 -4.91425e-06L61.7946 -2.07618e-06Z" fill="#161E2F" fill-opacity="0.5" />
                             </svg>
-                            <svg className="absolute right-0 translate-x-full" width="119" height="982" viewBox="0 0 119 982" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="absolute right-0 translate-x-full w-auto h-full" width="119" height="982" viewBox="0 0 119 982" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M42.0157 -3.5285e-06L62.7637 81.8333C83.5118 163.667 125.008 327.333 118.07 491C111.392 654.667 55.6316 818.333 28.2052 900.167L0.519559 982L0.519562 900.167C0.519566 818.333 0.519573 654.667 0.519579 491C0.519586 327.333 0.519593 163.667 0.519597 81.8333L0.5196 -5.43432e-06L42.0157 -3.5285e-06Z" fill="#161E2F" fill-opacity="0.2" />
                             </svg>
 
@@ -89,9 +89,9 @@ export default function Menu() {
                                     <motion.p variants={itemVariants} className="font-body text-2xl text-white font-bold">Totor & Jadou</motion.p>
                                 </motion.div>
                                 <motion.div initial="closed" animate="open" variants={sideVariants} exit={{ opacity: 0 }} className="grid gap-16">
-                                    <Link href={'/recipe'} className={currentRoute === "/recipe" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all opacity-0">Cuisine</motion.span></Link>
-                                    <Link href={'/maison'} className={currentRoute === "/maison" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all opacity-0">Maison</motion.span></Link>
-                                    <Link href={'/blog'} className={currentRoute === "/blog" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all opacity-0">Blog</motion.span></Link>
+                                    <Link href={'/'} className={currentRoute === "/" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all">Home</motion.span></Link>
+                                    <Link href={'/recipe'} className={currentRoute === "/recipe" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all">Cuisine</motion.span></Link>
+                                    <Link href={'/blog'} className={currentRoute === "/blog" ? "active" : ""}><motion.span variants={itemVariants} className="font-body text-8xl font-bold text-white/50 hover:text-white transition-all">Astuce</motion.span></Link>
                                 </motion.div>
                             </div>
                         </motion.div>

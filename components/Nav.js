@@ -62,7 +62,7 @@ export default function Nav(props) {
     return (
         <header className="px-4 xl:px-0 row-span-1 w-100 container mx-auto grid grid-cols-3 h-min py-5 items-center mb-14 gap-4 xl:gap-10">
             <Menu />
-            <Link className='' href={'/'}>
+            <Link className='cursor-pointer' href={'/'}>
                 {/* <div className='flex gap-2 sm:gap-3 flex-nowrap items-center'>
                     <Image alt='logo' src={logo} className="sm:w-5 h-8 w-auto" />
                     <p className="font-body text-xl sm:text-2xl text-white font-bold">Totor & Jadou</p>
@@ -72,8 +72,13 @@ export default function Nav(props) {
 
             <div className="w-full relative hidden md:block">
                 <div className='relative flex justify-end'>
-                    <div className='w-max h-full absolute items-center flex right-5'>
-                        <i onClick={() => setIsSearch((current) => !current)} className="ri-search-2-line text-white"></i>
+                    <div onClick={() => setIsSearch((current) => !current)} className='w-max h-full absolute items-center flex right-5'>
+                        {isSearch ? 
+                            <i className="ri-close-line text-white cursor-pointer"></i>
+                            :
+                            <i className="ri-search-2-line text-white cursor-pointer"></i>
+                        }
+                        
                     </div>
                     <motion.input animate={isSearch ? "visible" : "hidden"} variants={{visible: {paddingLeft: '0.5rem', paddingRight: '0.5rem', width: '100%'}, hidden: {paddingLeft: 0, paddingRight: 0, width: 0}}} onBlur={e => setTimeout(() => setSearch(), 300)} onChange={handleChange} placeholder='Rechercher une recette' type="text" className="bg-white/20 py-3 w-full rounded-md font-body font-normal text-sm placeholder:text-black" />
 
